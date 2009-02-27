@@ -7,6 +7,12 @@ set -e
 
 export DISPLAY=:87
 
+mailWithSubject() {
+    # mail newspeak-nightly@DOMAIN -s "$@"
+    mkdir -p mails
+    cat - > "mails/$1.txt"
+}
+
 print_log_files() {
 	for l in *.log; do
 		echo -n "$l" | tr -c '' '='; echo
@@ -20,7 +26,7 @@ print_log_files() {
 nsvm() {
 	if [ -e fatal-boot-error.log ] ; then
 		if [ -z ${DRYRUN} ]; then
-			print_log_files | mail newspeak-nightly@cadence.com -s "Failed: Nightly build ${BRANCH}"
+			print_log_files | mailWithSubject "Failed: Nightly build ${BRANCH}"
 		else
 			tr \\r \\n < fatal-boot-error.log
 		fi
@@ -29,16 +35,11 @@ nsvm() {
 	if [ -x ./vm/onebuild/build/nsvm-debug ] ; then
 		./vm/onebuild/build/nsvm-debug "$@"
 	else
-		open -W "$@"
+		open --background --new --wait-apps "$@"
 	fi
 }
 
-no_rep() {
-	[ "${REP_HOST}" = . ]
-}
-
 do_svn() {
-	no_rep && return
 	echo svn "$@"
 	\svn --no-auth-cache --username bootstrapper --password sbootstrappers --non-interactive "$@"
 }
@@ -46,7 +47,6 @@ do_svn() {
 alias svn=do_svn
 
 do_broken_svn() {
-	no_rep && return
 	echo svn "$@"
 	\svn "$@"
 }
@@ -67,7 +67,7 @@ show_build_summary() {
 }
 
 sigusr1_handler() {
-	print_log_files | mail newspeak-nightly@cadence.com -s "Timed out: Nightly build ${BRANCH}"
+	print_log_files | mailWithSubject "Timed out: Nightly build ${BRANCH}"
 	kill -HUP $$
 }
 
@@ -211,12 +211,11 @@ if [ "$2" = --dry-run ]; then
 	DRYRUN=dryrun
 fi
 
-REPOSITORY='svn://'${REP_HOST:=.}
-BOOT_TRUNK=${REPOSITORY}'/bootstrap/trunk'
+REPOSITORY='svn+ssh://scs1.sshcontrol.com/svn/newspeak-svn'
+LOCAL_WORKING_COPY="$(echo ${REPOSITORY} | sed -e 's,[:/][:/]*,-,g').local-snapshot"
 eval $(date +'BUILD_YEAR=%Y;BUILD_year=%y;BUILD_MONTH=%m;BUILD_DAY=%d')
 BRANCH="${BUILD_YEAR}-${BUILD_MONTH}-${BUILD_DAY}.${RESPIN}"
 VERSION="${BUILD_year}.${BUILD_MONTH}.${BUILD_DAY}${RESPIN}"
-NIGHTLY_LOC=${REPOSITORY}'/bootstrap/nightly'
 SNAPSHOT_REV=$(svn info ${REPOSITORY} | awk '/^Revision:/ { print "-r" $2 }')
 BOOT_IMAGE="nsboot-${BRANCH}.image"
 
@@ -228,50 +227,31 @@ fi
 
 (type -t Xvnc > /dev/null 2>&1) && setup_vnc > Xvnc.log 2>&1
 
-if no_rep ; then
-	SQUEAK_DIR=$(ls -1dtr ns-squeak-* | tail -1)
-	NEWSPEAK_DIR=$(ls -1dtr newspeak-* | tail -1)
-	mv "${SQUEAK_DIR}/changesets" .
-	mv "${SQUEAK_DIR}/squeakpackages" .
-	mv "${NEWSPEAK_DIR}/nspackages" .
-	mv "${NEWSPEAK_DIR}/images" .
-else
-	svn -q co -N ${NIGHTLY_LOC} nightly
-	cd nightly
-	svn -q copy ${SNAPSHOT_REV} ${BOOT_TRUNK} ${BRANCH}
-	cd ${BRANCH}
-	svn -q mkdir ${REP_HOST}
-	svn -q copy ${SNAPSHOT_REV} ${REPOSITORY}/packages ${REP_HOST}/packages
-	svn -q copy ${SNAPSHOT_REV} ${REPOSITORY}/nspackages ${REP_HOST}/nspackages
-	svn -q copy ${SNAPSHOT_REV} ${REPOSITORY}/squeakpackages ${REP_HOST}/squeakpackages
-	svn -q copy ${SNAPSHOT_REV} ${REPOSITORY}/squeaktests ${REP_HOST}/squeaktests
-	svn -q copy ${SNAPSHOT_REV} ${REPOSITORY}/vm/trunk vm
-fi
+svn -q co ${SNAPSHOT_REV} ${REPOSITORY}/packages ${LOCAL_WORKING_COPY}/packages
+svn -q co ${SNAPSHOT_REV} ${REPOSITORY}/nspackages ${LOCAL_WORKING_COPY}/nspackages
+svn -q co ${SNAPSHOT_REV} ${REPOSITORY}/squeakpackages ${LOCAL_WORKING_COPY}/squeakpackages
+svn -q co ${SNAPSHOT_REV} ${REPOSITORY}/squeaktests ${LOCAL_WORKING_COPY}/squeaktests
 
-echo "CrLfFileStream fileNamed: '${REP_HOST}/nspackages/NsBoot/NsBoot.st' do: [ :s | s fileIn]!" > doit.st
-echo "NsBoot bootstrap: '${REP_HOST}' imageName: '${BOOT_IMAGE}' applicationName: ${APPLICATION_IMAGE}!" >> doit.st
+echo "CrLfFileStream fileNamed: '${LOCAL_WORKING_COPY}/nspackages/NsBoot/NsBoot.st' do: [ :s | s fileIn]!" > doit.st
+echo "NsBoot bootstrap: '${REPOSITORY}' imageName: '${BOOT_IMAGE}' applicationName: ${APPLICATION_IMAGE}!" >> doit.st
 
-if no_rep ; then
-	true
-else
-	echo Producing source bundle...
-	mkdir newspeak
-	mkdir newspeak-${BRANCH}
-	mkdir ns-squeak
-	mkdir ns-squeak-${BRANCH}
-	ln -s ../${REP_HOST}/squeakpackages ns-squeak
-	ln -s ../${REP_HOST}/nspackages newspeak
-	ln -s ../changesets ns-squeak
-	ln -s ../images newspeak
-	# ln -s ../vm newspeak
-	ln -s ../vm/platforms/Cross/plugins/IA32ABI newspeak
-	ln -s ../vm/onebuild newspeak
-	svn -q export ${BOOT_TRUNK}/nightly-build.sh newspeak/nightly-build.sh
-	find newspeak/nightly-build.sh newspeak/*/* \( -name \.svn -o -name =versioninfo\* -o -name \*_proprietary \) -prune -o -type f -print | add_apl | tar --numeric-owner -jc -T - -f newspeak-${BRANCH}.tar.bz2
-	find ns-squeak/*/* \( -name \.svn -o -name =versioninfo\* -o -name \*_proprietary \) -prune -o -type f -print | add_sql | tar --numeric-owner -jc -T - -f ns-squeak-${BRANCH}.tar.bz2
-	lsvn -q add newspeak-${BRANCH}.tar.bz2 ns-squeak-${BRANCH}.tar.bz2
-	echo Producing source bundle...done
-fi
+# echo Producing source bundle...
+# mkdir newspeak
+# mkdir newspeak-${BRANCH}
+# mkdir ns-squeak
+# mkdir ns-squeak-${BRANCH}
+# ln -s ../${REP_HOST}/squeakpackages ns-squeak
+# ln -s ../${REP_HOST}/nspackages newspeak
+# ln -s ../changesets ns-squeak
+# ln -s ../images newspeak
+# # ln -s ../vm newspeak
+# ln -s ../vm/platforms/Cross/plugins/IA32ABI newspeak
+# ln -s ../vm/onebuild newspeak
+# svn -q export ${BOOT_TRUNK}/nightly-build.sh newspeak/nightly-build.sh
+# find newspeak/nightly-build.sh newspeak/*/* \( -name \.svn -o -name =versioninfo\* -o -name \*_proprietary \) -prune -o -type f -print | add_apl | tar --numeric-owner -jc -T - -f newspeak-${BRANCH}.tar.bz2
+# find ns-squeak/*/* \( -name \.svn -o -name =versioninfo\* -o -name \*_proprietary \) -prune -o -type f -print | add_sql | tar --numeric-owner -jc -T - -f ns-squeak-${BRANCH}.tar.bz2
+# lsvn -q add newspeak-${BRANCH}.tar.bz2 ns-squeak-${BRANCH}.tar.bz2
+# echo Producing source bundle...done
 
 if [ -d vm/onebuild ] ; then
 	echo Building vm...
@@ -309,17 +289,4 @@ else
 	echo 'Bootstrap phase 2 (experimental nsboot)...done'
 fi
 
-lsvn -q revert NsBootStarter.changes
-lsvn -q add {,experimental-}{nsboot,${APPLICATION_NAME}}"-${BRANCH}."{image,changes,log} make.log
-
-if [ -z ${DRYRUN} ]; then
-	svn -q ci -m "Nightly build ${BRANCH}"
-	show_build_summary | mail newspeak-nightly@cadence.com -s "Nightly build ${BRANCH}"
-else
-	show_build_summary
-fi
-
-if [ -z ${DRYRUN} ]; then
-	cd ..
-	rm -rf ${BRANCH}
-fi
+show_build_summary
