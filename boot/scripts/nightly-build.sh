@@ -211,7 +211,7 @@ if [ "$2" = --dry-run ]; then
 	DRYRUN=dryrun
 fi
 
-REPOSITORY='svn+ssh://scs1.sshcontrol.com/svn/newspeak-svn'
+REPOSITORY=${NSREPO}
 LOCAL_WORKING_COPY="$(echo ${REPOSITORY} | sed -e 's,[:/][:/]*,-,g').local-snapshot"
 eval $(date +'BUILD_YEAR=%Y;BUILD_year=%y;BUILD_MONTH=%m;BUILD_DAY=%d')
 BRANCH="${BUILD_YEAR}-${BUILD_MONTH}-${BUILD_DAY}.${RESPIN}"
