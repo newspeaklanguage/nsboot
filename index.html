@@ -7,4 +7,65 @@
 </head>
 <body>
 	<h1>Newspeak Boot Image Instructions</h1>
-</body>
+
+    <p>This document describes how to create <a href="http://newspeaklanguage.org/">Newspeak</a> boot image. Currently, Newspeak is not <a href="http://en.wikipedia.org/wiki/Self-hosting">self-hosted</a> so using the term <em>boot image</em> is a misnomer. Self-hosting is one of the future goals of the Newspeak project, but we will, for now, refer to the process described in this document as booting.</p>
+
+    <h2>Overview</h2>
+
+    <p>The current approach taken to <strong>boot Newspeak</strong> is to <strong>start with a Squeak 3.9 image</strong> (<a href="http://ftp.squeak.org/3.9/Squeak3.9-final-7067.zip">Squeak3.9-final-7067</a>) and <strong>install a number of patches</strong> in the form of change sets and packages.</p>
+        
+        <p>Originally, the boot process required some manual intervention. This lead to infrequent boot images which in turn created problems for the engineering team at Cadence. The problems includes loading new versions of packages in the right order. Since the Newspeak language was evolving on a daily basis, loading packages created daily problems requiring assistance from the language team. To reduce the overhead on the language team as well as making it easier to get an up to date image, we decided to automate the existing boot process although it is a transitory solution until the Newspeak platform can be self-hosted.</p>
+    
+    <p>It is important to realize <strong>this boot process is transitory</strong>. More effort could be put into making it smoother or more elegant, however, the long term goal requires a completely different direction.</p>
+
+    <p>Another thing to understand about the Newspeak project is that we are <strong>not creating a better Squeak</strong>. Squeak is being used to build Newspeak, but eventually, Newspeak should not depend on Squeak at all. A consequence of this is that we decided to use <strong>industry standard tools</strong> to manage source code so Newspeak uses a modified version of <a href="http://www.wiresong.ca/Monticello/">Monticello</a> which saves files in Subversion and is not compatible with the original Monticello included in Squeak.</p>
+
+    <p>Eventually, we should be able to start Newspeak from a stateless binary version of compiled classes, similar to how a Java virtual machine, for example, reads classes from class files or how Strongtalk loads BST files rather than loading an image. Unlike these systems, Newspeak intends to support images while also recognizing the value of being able to fully describe the behavior of an application, that is the ability to load stateless compiled classes and start from scratch. Newspeak already includes a binary format called Newspeak Object Format (NOF), however, more work on compilers and core libraries is needed before Newspeak can be booted from NOF files.</p>
+
+    <h2>Mercurial</h2>
+
+    <p>The scripts used for producing a Newspeak boot image are under <a href="http://www.selenic.com/mercurial/wiki/index.cgi/UnderstandingMercurial">Mercurial</a> source code control. The boot scripts can be checked out with this command:</p>
+        
+     <blockquote><p>hg clone <a href="http://hg.newspeaklanguage.org/boot/">http://hg.newspeaklanguage.org/boot/</a> newspeak-boot</p></blockquote>
+        
+    <p>Most Linux distributions includes Mercurial as an optional "hg" package. Windows users should install <a href="http://sourceforge.net/project/showfiles.php?group_id=199155">TortoiseHg</a>. Mac OS X users can download Mercurial from <a href="http://mercurial.berkwood.com/">mercurial.berkwood.com</a></p>
+
+    <p>Before committing any change, make sure to <strong>set up a Mercurial username</strong> as described in the Mercurial <a href="http://www.selenic.com/mercurial/wiki/index.cgi/QuickStart">quick start guide</a>.</p>
+
+    <h2><a name="creating">Creating a Boot Image</a></h2>
+
+    <p>After checking out a copy of the boot scripts, go to the <em>boot</em> directory (which should have <em>scripts</em> subdirectory). Then run this command:</p>
+    <blockquote>
+        <p style="white-space:pre">NSREPO="http://newspeakpl.svn.sourceforge.net/svnroot/newspeakpl" \
+        NSVMREPO="http://hg.newspeaklanguage.org/vm/" \
+        ./scripts/bootstarter.sh</p>
+    </blockquote>
+
+    <p>Currently, this process is only known to work on Mac OS X. It should also work on Linux, and it is likely that several changes are required to run it under Cygwin on Windows.</p>
+    
+    <h2>Booting from a Local Repository</h2>
+    
+    <p>In order to make changes to the boot process, it is likely that you will need to make changes to various Newspeak packages, including the <em>NsBoot</em> package which contain the Smalltalk part of the boot process. While working on changes to the boot process, it is likely that you will have to publish changes that interfere with other developers, so we prefer that you create a local copy of the Subversion repository. Use <em>svnsync</em> to create a local repository following these steps (assuming bash shell):</p>
+
+    <ol>
+        <li>Create a directory (outside your Mercurial working copy) and "cd" there.</li>
+        <li>svnadmin create newspeak-clone</li>
+        <li style="white-space:pre">cat - &lt;&lt;EOF | svnadmin load --force-uuid newspeak-clone
+SVN-fs-dump-format-version: 2
+
+UUID: e77928cd-b8e6-4608-a0d6-7040c52464c0
+EOF</li>
+        <li>svnsync init file://$(pwd)/newspeak-clone http://newspeakpl.svn.sourceforge.net/svnroot/newspeakpl</li>
+        <li>svnsync sync file://$(pwd)/newspeak-clone</li>
+        <li>echo file://$(pwd)/newspeak-clone</li>
+    </ol>
+
+    <p>The last step shows the name of the local repository. Return to the boot directory as described in "<a href="#creating">Creating a Boot Image</a>" above. However, this time you should use the local repository from step 6 above:</p>
+    
+      <blockquote>
+        <p style="white-space:pre">NSREPO="file://<em>...PATH...</em>/newspeak-clone" \
+        NSVMREPO="http://hg.newspeaklanguage.org/vm/" \
+        ./scripts/bootstarter.sh</p>
+    </blockquote>
+  </body>
+</html>
