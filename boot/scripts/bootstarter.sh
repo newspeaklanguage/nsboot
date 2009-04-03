@@ -18,10 +18,7 @@ function inflate() {
 
 function run_nsvm() {
     if [ -z "$(type -p nsvm)" ]; then
-        SAVED_DISPLAY="${DISPLAY}"
-        unset DISPLAY 
-        '/Applications/Newspeak Virtual Machine.app/Contents/MacOS/nsvm' "$@"
-        DISPLAY="${SAVED_DISPLAY}"
+        '/Applications/Newspeak Virtual Machine.app/Contents/MacOS/nsvm' -quartz "$@"
     else
         nsvm "$@"
     fi
