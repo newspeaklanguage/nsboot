@@ -55,7 +55,8 @@ SVN-fs-dump-format-version: 2
 
 UUID: e77928cd-b8e6-4608-a0d6-7040c52464c0
 EOF</li>
-        <li>svnsync init file://$(pwd)/newspeak-clone http://newspeakpl.svn.sourceforge.net/svnroot/newspeakpl</li>
+        <li>ln -s $(type -P true) newspeak-clone/hooks/pre-revprop-change</li>
+        <li>svnsync init file://$(pwd)/newspeak-clone https://newspeakpl.svn.sourceforge.net/svnroot/newspeakpl</li>
         <li>svnsync sync file://$(pwd)/newspeak-clone</li>
         <li>echo file://$(pwd)/newspeak-clone</li>
     </ol>
