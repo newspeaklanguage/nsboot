@@ -49,22 +49,27 @@
 
     <ol>
         <li>Create a directory (outside your Mercurial working copy) and "cd" there.</li>
-        <li>svnadmin create newspeak-clone</li>
-        <li style="white-space:pre">cat - &lt;&lt;EOF | svnadmin load --force-uuid newspeak-clone
+        <li>svnadmin create newspeak-read-only-clone</li>
+        <li style="white-space:pre">cat - &lt;&lt;EOF | svnadmin load --force-uuid newspeak-read-only-clone
 SVN-fs-dump-format-version: 2
 
 UUID: e77928cd-b8e6-4608-a0d6-7040c52464c0
 EOF</li>
-        <li>ln -s $(type -P true) newspeak-clone/hooks/pre-revprop-change</li>
-        <li>svnsync init file://$(pwd)/newspeak-clone https://newspeakpl.svn.sourceforge.net/svnroot/newspeakpl</li>
-        <li>svnsync sync file://$(pwd)/newspeak-clone</li>
-        <li>echo file://$(pwd)/newspeak-clone</li>
+        <li>ln -s $(type -P true) newspeak-read-only-clone/hooks/pre-revprop-change</li>
+        <li>svnsync init file://$(pwd)/newspeak-read-only-clone https://newspeakpl.svn.sourceforge.net/svnroot/newspeakpl</li>
+        <li>svnsync sync file://$(pwd)/newspeak-read-only-clone</li>
+        <li>ln -s $(type -P false) newspeak-read-only-clone/hooks/pre-commit</li>
+        <li>svnadmin hotcopy newspeak-read-only-clone newspeak-local-copy</li>
+        <li>rm -f newspeak-local-copy/hooks/pre-commit newspeak-local-copy/hooks/pre-revprop-change
+        <li>echo file://$(pwd)/newspeak-local-copy</li>
     </ol>
+
+    <p>Notice that we create two local copies. This is to work around performance issues with sf.net. The first repository becomes a read-only clone which can be quickly synchronized in the future. The second copy will be modified when you modify Newspeak packages, and thus cannot be synchronized due to limitations of svnsync (yet another reason to use git or Mercurial).</p>
 
     <p>The last step shows the name of the local repository. Return to the boot directory as described in "<a href="#creating">Creating a Boot Image</a>" above. However, this time you should use the local repository from step 6 above:</p>
     
       <blockquote>
-        <p style="white-space:pre">NSREPO="file://<em>...PATH...</em>/newspeak-clone" \
+        <p style="white-space:pre">NSREPO="file://<em>...PATH...</em>/newspeak-local-copy" \
         NSVMREPO="http://hg.newspeaklanguage.org/vm/" \
         ./scripts/bootstarter.sh</p>
     </blockquote>
