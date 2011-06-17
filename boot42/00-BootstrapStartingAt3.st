@@ -1,0 +1,47 @@
+
+[
+
+ChangeSet fileIntoNewChangeSet: '03-Other.cs'.
+ChangeSet fileIntoNewChangeSet: '04-SetupPreferences.cs'.
+ChangeSet fileIntoNewChangeSet: '05-DefiningClassMetadata.st'.
+ChangeSet fileIntoNewChangeSet: '06-load_NsSvnRepository.st'.
+ChangeSet fileIntoNewChangeSet: '07-load_NsMultilanguage.st'.
+ChangeSet fileIntoNewChangeSet: '08-load_NewsqueakBase.st'.
+ChangeSet fileIntoNewChangeSet: '09-load_NsBabel.st'.
+ChangeSet fileIntoNewChangeSet: '10-load_NsSystem.st'.
+ChangeSet fileIntoNewChangeSet: '11-load_XML-Parser.st'.
+ChangeSet fileIntoNewChangeSet: '12-MonticelloChanges.cs'.
+ChangeSet fileIntoNewChangeSet: '13-RecreateSpecialObjectsArray.st'.
+ChangeSet fileIntoNewChangeSet: '14-load_FFIKernel.st'.
+ChangeSet fileIntoNewChangeSet: '15-load_OSProcess.st'.
+ChangeSet fileIntoNewChangeSet: '16-load_Shout.st'.
+ChangeSet fileIntoNewChangeSet: '17-CollectionsChanges.cs'.
+ChangeSet fileIntoNewChangeSet: '18-ExceptionsChanges.cs'.
+ChangeSet fileIntoNewChangeSet: '19-PackageInfoChanges.cs'.
+ChangeSet fileIntoNewChangeSet: '20-PackagingCore.st'.
+ChangeSet fileIntoNewChangeSet: '21-load_NewspeakFacelift.st'.
+ChangeSet fileIntoNewChangeSet: '22-load_CombinatorialParsing.st'.
+ChangeSet fileIntoNewChangeSet: '23-reload_NewsqueakBase.st'.
+"ChangeSet fileIntoNewChangeSet: '24-KernelClassPatches.st'."
+"ChangeSet fileIntoNewChangeSet: '25-BrowserPatches.st'."
+ChangeSet fileIntoNewChangeSet: '26-BaseEnhancements.st'.
+ChangeSet fileIntoNewChangeSet: '27-SHTextStylerST80 setupForNewsqueak.st'.
+ChangeSet fileIntoNewChangeSet: '28-load_Newsqueak1.st'.
+ChangeSet fileIntoNewChangeSet: '29-load_Yield.st'.
+ChangeSet fileIntoNewChangeSet: '30-load_NewspeakCore.st'.
+ChangeSet fileIntoNewChangeSet: '31-load_Newsqueak2.st'.
+ChangeSet fileIntoNewChangeSet: '32-load_Newsqueak-conversions.st'.
+ChangeSet fileIntoNewChangeSet: '33-load_Newsqueak-mixins.st'.
+ChangeSet fileIntoNewChangeSet: '34-load_NsFFI.st'.
+ChangeSet fileIntoNewChangeSet: '35-load_BrazilPlumbing.st'.
+ChangeSet fileIntoNewChangeSet: '36-load_Newspeak.st'.
+ChangeSet fileIntoNewChangeSet: '37-WeakSubclasses.st'.
+ChangeSet fileIntoNewChangeSet: '38-load_Newsqueak-Metadata.st'.
+ChangeSet fileIntoNewChangeSet: '39-load_NOFBootstrap.st'.
+ChangeSet fileIntoNewChangeSet: '40-SystemChanges.cs'.
+ChangeSet fileIntoNewChangeSet: '41-CompilerChanges.cs'.
+ChangeSet fileIntoNewChangeSet: '42-KernelChanges.cs'.
+ChangeSet fileIntoNewChangeSet: '43-load_INIFile-Core.st'.
+ChangeSet fileIntoNewChangeSet: '44-LoadNS3Modules.st'.
+ChangeSet fileIntoNewChangeSet: '45-SetupAndQuit.st'.
+] forkNamed: 'Bootstrapping'
