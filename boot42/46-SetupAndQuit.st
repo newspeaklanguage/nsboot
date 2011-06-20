@@ -4,5 +4,5 @@ SerializationData setup.
 ToolSet default: NsToolSet.
 NsBoot basicNew openDockingBar.
 Utilities setAuthorInitials: ''. 
-NativeSession start.
+"NativeSession start."
 Smalltalk at: #UnversionedSourceManager ifPresent: [ :srcmgr | srcmgr setup].

@@ -42,8 +42,8 @@ ChangeSet fileIntoNewChangeSet: '40-SystemChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '41-CompilerChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '42-KernelChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '43-load_INIFile-Core.st'.
-ChangeSet fileIntoNewChangeSet: '44-LoadNS3Modules.st'.
-ChangeSet fileIntoNewChangeSet: '45-load_Phase2Packages.st'.
+ChangeSet fileIntoNewChangeSet: '44-load_Phase2Packages.st'.
+ChangeSet fileIntoNewChangeSet: '45-LoadNS3Modules.st'.
 ChangeSet fileIntoNewChangeSet: '46-SetupAndQuit.st'.
 Utilities setAuthorInitials: ''.
 ] forkAt: 20 named: 'Bootstrapping'
