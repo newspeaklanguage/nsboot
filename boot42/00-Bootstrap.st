@@ -40,7 +40,7 @@ ChangeSet fileIntoNewChangeSet: '36-load_Newspeak.st'.
 ChangeSet fileIntoNewChangeSet: '37-WeakSubclasses.st'.
 ChangeSet fileIntoNewChangeSet: '38-load_Newsqueak-Metadata.st'.
 ChangeSet fileIntoNewChangeSet: '39-load_NOFBootstrap.st'.
-ChangeSet fileIntoNewChangeSet: '40-SystemChanges.cs'.
+ChangeSet fileIntoNewChangeSet: '40-NewspeakBytecode.cs'.
 ChangeSet fileIntoNewChangeSet: '41-CompilerChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '42-KernelChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '43-load_INIFile-Core.st'.
