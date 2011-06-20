@@ -1,3 +1,8 @@
 syntax: regexp
 ^boot/build/.*
 ^boot/Squeak3.9-final-7067.zip
+
+syntax: glob
+boot42/package-cache
+boot42/*.image
+boot42/*.changes
