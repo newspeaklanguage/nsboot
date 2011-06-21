@@ -3,4 +3,4 @@
 
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
-(repository versionFromFileNamed: 'NewspeakCore-ryan.40.mcz') load.
+(repository versionFromFileNamed: 'NewspeakCore-ryan.44.mcz') load.
