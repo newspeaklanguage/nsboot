@@ -20,8 +20,8 @@ repository := MCDirectoryRepository	new
 (repository versionFromFileNamed: 'NSCollections-ryan.55.mcz') load.
 (repository versionFromFileNamed: 'NSFiles-ryan.29.mcz') load.
 (repository versionFromFileNamed: 'NsSvnRepository2-ryan.42.mcz') load.
-(repository versionFromFileNamed: 'NsToolSet-ryan.37.mcz') load.
-(repository versionFromFileNamed: 'SourceManagement-ryan.196.mcz') load.
+(repository versionFromFileNamed: 'NsToolSet-ryan.38.mcz') load.
+(repository versionFromFileNamed: 'SourceManagement-ryan.197.mcz') load.
 (repository versionFromFileNamed: 'VmMirror-ryan.33.mcz') load.
 (repository versionFromFileNamed: 'Win32API-ryan.46.mcz') load.
 

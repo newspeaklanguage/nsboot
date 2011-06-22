@@ -4,6 +4,7 @@ Utilities setAuthorInitials: 'bootstrapping'.
 ChangeSet fileIntoNewChangeSet: '001-PartialUnload.cs'.
 ChangeSet fileIntoNewChangeSet: '01-UnloadAllKnownPackages.cs'.
 ChangeSet fileIntoNewChangeSet: '02-BehaviorSchemaChange.st'.
+Smalltalk saveAs: 'finished02.image'.
 ChangeSet fileIntoNewChangeSet: '03-Other.cs'.
 ChangeSet fileIntoNewChangeSet: '04-SetupPreferences.cs'.
 ChangeSet fileIntoNewChangeSet: '05-DefiningClassMetadata.st'.
