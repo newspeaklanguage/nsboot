@@ -2,6 +2,7 @@
 Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
 NativeSession start.
 UnversionedSourceManager setup.
+NewsqueakDockingBar setup.
 [Smalltalk saveAs: 'nsboot-', Date today yyyymmdd.] forkAt: 19.
 
 "NsBoot basicNew fixDanglingReferences.
