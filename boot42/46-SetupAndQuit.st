@@ -1,6 +1,6 @@
 
 Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
-NativeSession start. 
+NativeSession start.
 UnversionedSourceManager setup.
 [Smalltalk saveAs: 'nsboot-', Date today yyyymmdd.] forkAt: 19.
 

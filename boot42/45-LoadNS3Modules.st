@@ -4,6 +4,6 @@ runtime := NewspeakObjectFormatDeserializer	appFrom: 'BootstrapRuntimeForSqueak.
 platform := runtime using: VMMirror new.
 Platform nsPlatform: platform.
 Platform nsPlatform bootstrap.
-Platform nsPlatform: nil. 
+Platform resetEverything.
 
 Smalltalk saveAs: 'compiledNS3Modules.image'.
