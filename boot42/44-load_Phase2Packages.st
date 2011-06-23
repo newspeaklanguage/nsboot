@@ -24,5 +24,3 @@ repository := MCDirectoryRepository	new
 (repository versionFromFileNamed: 'SourceManagement-ryan.197.mcz') load.
 (repository versionFromFileNamed: 'VmMirror-ryan.33.mcz') load.
 (repository versionFromFileNamed: 'Win32API-ryan.46.mcz') load.
-
-Smalltalk saveAs: 'aboutToCompileNS3.image'.

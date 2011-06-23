@@ -1,10 +1,10 @@
 
 [
-Utilities setAuthorInitials: 'bootstrapping'.
+	Utilities setAuthorInitials: 'bootstrapping'.
 ChangeSet fileIntoNewChangeSet: '001-PartialUnload.cs'.
 ChangeSet fileIntoNewChangeSet: '01-UnloadAllKnownPackages.cs'.
 ChangeSet fileIntoNewChangeSet: '02-BehaviorSchemaChange.st'.
-Smalltalk saveAs: 'finished02.image'.
+	Smalltalk saveAs: 'finished02.image'.
 ChangeSet fileIntoNewChangeSet: '03-Other.cs'.
 ChangeSet fileIntoNewChangeSet: '04-SetupPreferences.cs'.
 ChangeSet fileIntoNewChangeSet: '05-DefiningClassMetadata.st'.
@@ -26,8 +26,8 @@ ChangeSet fileIntoNewChangeSet: '20-PackagingCore.st'.
 ChangeSet fileIntoNewChangeSet: '21-load_NewspeakFacelift.st'.
 ChangeSet fileIntoNewChangeSet: '22-load_CombinatorialParsing.st'.
 ChangeSet fileIntoNewChangeSet: '23-reload_NewsqueakBase.st'.
-	"ChangeSet fileIntoNewChangeSet: '24-KernelClassPatches.st'."
-	"ChangeSet fileIntoNewChangeSet: '25-BrowserPatches.st'."
+"ChangeSet fileIntoNewChangeSet: '24-KernelClassPatches.st'."
+"ChangeSet fileIntoNewChangeSet: '25-BrowserPatches.st'."
 ChangeSet fileIntoNewChangeSet: '26-BaseEnhancements.st'.
 ChangeSet fileIntoNewChangeSet: '27-SHTextStylerST80 setupForNewsqueak.st'.
 ChangeSet fileIntoNewChangeSet: '28-load_Newsqueak1.st'.
@@ -47,7 +47,9 @@ ChangeSet fileIntoNewChangeSet: '41-CompilerChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '42-KernelChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '43-load_INIFile-Core.st'.
 ChangeSet fileIntoNewChangeSet: '44-load_Phase2Packages.st'.
+	Smalltalk saveAs: 'aboutToCompileNS3.image'.
 ChangeSet fileIntoNewChangeSet: '45-LoadNS3Modules.st'.
+	Smalltalk saveAs: 'compiledNS3Modules.image'.
 ChangeSet fileIntoNewChangeSet: '46-SetupAndQuit.st'.
-Utilities setAuthorInitials: ''.
+	Utilities setAuthorInitials: ''.
 ] forkAt: 20 named: 'Bootstrapping'
