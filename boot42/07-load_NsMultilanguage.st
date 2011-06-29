@@ -3,4 +3,4 @@
 
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
-(repository versionFromFileNamed: 'NsMultilanguage-ryan.59.mcz') load.
+(repository versionFromFileNamed: 'NsMultilanguage-ryan.60.mcz') load.

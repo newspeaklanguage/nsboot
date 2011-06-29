@@ -9,4 +9,4 @@ Object subclass: #CombinatorialParser
 
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
-(repository versionFromFileNamed: 'NewsqueakBase-ryan.87.mcz') load.
+(repository versionFromFileNamed: 'NewsqueakBase-ryan.88.mcz') load.
