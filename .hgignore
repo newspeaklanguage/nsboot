@@ -6,5 +6,6 @@ syntax: glob
 boot42/package-cache
 boot42/*.image
 boot42/*.changes
+boot42/*.changes.old
 boot42/*.log
 boot42/*.zip

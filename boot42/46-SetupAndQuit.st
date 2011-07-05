@@ -10,6 +10,7 @@ NsToolSet releaseMemory: true.
 Smalltalk condenseChanges. "Must be after releaseMemory: for reasons beyond me"
 Smalltalk cleanUp.
 Platform resetEverything.
+SystemOrganization removeEmptyCategories.
 
 Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
 NativeSession start.
