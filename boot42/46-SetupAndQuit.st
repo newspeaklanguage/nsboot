@@ -18,7 +18,10 @@ NewsqueakDockingBar setup.
 UnversionedSourceManager setup.
 SHTextStylerST80 setupForNewsqueak.
 
-[Smalltalk saveAs: 'nsboot-', Date today yyyymmdd. 
+[|imageName|
+ imageName := 'nsboot-',Date today yyyymmdd.
+ imageName asMorph openInWorld; lock. "We don't print to the Transcript because it would be erased by GarbageCollectAggressively"
+ Smalltalk saveAs: imageName. 
  Smalltalk snapshot: true andQuit: true.] forkAt: 19.
 
 "
