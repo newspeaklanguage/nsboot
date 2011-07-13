@@ -14,6 +14,7 @@ SystemOrganization removeEmptyCategories.
 
 Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
 NativeSession start.
+
 UIManager default: NativeUIManager new.
 NewsqueakDockingBar setup.
 UnversionedSourceManager setup.
