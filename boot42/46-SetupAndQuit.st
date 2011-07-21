@@ -12,7 +12,7 @@ Smalltalk cleanUp.
 Platform resetEverything.
 SystemOrganization removeEmptyCategories.
 
-"Smalltalk addToStartUpList: NsFFISessionManager after: Delay."
+Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
 NativeSession start.
 
 UIManager default: NativeUIManager new.

@@ -4,3 +4,4 @@ rm Squeak4.2-10966.changes
 unzip Squeak4.2-10966.zip
 nsvm Squeak4.2-10966.image 00-Bootstrap.st
 /home/ryan/nsvm/nsvm Squeak4.2-10966.image 00-Bootstrap.st
+/home/rmacnak/nsvm/nsvm -headless Squeak4.2-10966.image 00-Bootstrap.st
