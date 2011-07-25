@@ -5,6 +5,8 @@ Class addSubclass: ImplementationBase class.
 ChangeSet fileIntoNewChangeSet: '98-HideNonSmalltalkFromMC.cs'.
 "This is not part of the 03-Other set because it should come after multilanguage, otherwise attempt to determine language will fail"
 
+MCWorkingCopy allManagers do: [:ea | ea modified: false].
+
 Platform resetEverything.
 NsToolSet releaseMemory: true.
 Smalltalk condenseChanges. "Must be after releaseMemory: for reasons beyond me"
@@ -17,7 +19,7 @@ NativeSession start.
 
 UIManager default: NativeUIManager new.
 NewsqueakDockingBar setup.
-UnversionedSourceManager setup.
+"UnversionedSourceManager setup."
 SHTextStylerST80 setupForNewsqueak.
 
 [|imageName|

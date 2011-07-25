@@ -10,7 +10,7 @@ Object subclass: #TestRunner
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
 	
-(repository versionFromFileNamed: 'BrazilForMorphic-ryan.23.mcz') load.
+(repository versionFromFileNamed: 'BrazilForMorphic-ryan.24.mcz') load.
 (repository versionFromFileNamed: 'Brazil-ryan.322.mcz') load.
 (repository versionFromFileNamed: 'ExternalProcess-ryan.25.mcz') load.
 (repository versionFromFileNamed: 'Hopscotch-ryan.274.mcz') load.
@@ -24,3 +24,5 @@ repository := MCDirectoryRepository	new
 (repository versionFromFileNamed: 'SourceManagement-ryan.198.mcz') load.
 (repository versionFromFileNamed: 'VmMirror-ryan.33.mcz') load.
 (repository versionFromFileNamed: 'Win32API-ryan.46.mcz') load.
+
+(repository versionFromFileNamed: 'PackageInfo-Base-yk.53.mcz') load.
