@@ -24,5 +24,3 @@ repository := MCDirectoryRepository	new
 (repository versionFromFileNamed: 'SourceManagement-ryan.198.mcz') load.
 (repository versionFromFileNamed: 'VmMirror-ryan.33.mcz') load.
 (repository versionFromFileNamed: 'Win32API-ryan.46.mcz') load.
-
-(repository versionFromFileNamed: 'PackageInfo-Base-yk.53.mcz') load.
