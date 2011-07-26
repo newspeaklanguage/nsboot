@@ -21,7 +21,7 @@ Smalltalk cleanUp.
 Platform resetEverything.
 SystemOrganization removeEmptyCategories.
 
-Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
+"Smalltalk addToStartUpList: NsFFISessionManager after: Delay."
 NativeSession start.
 
 UIManager default: NativeUIManager new.
@@ -33,7 +33,8 @@ SHTextStylerST80 setupForNewsqueak.
  imageName := 'nsboot-',Date today yyyymmdd.
  imageName asMorph openInWorld; lock. "We don't print to the Transcript because it would be erased by GarbageCollectAggressively"
  Smalltalk saveAs: imageName. 
- Smalltalk snapshot: true andQuit: true.] forkAt: 19.
+ WorldState addDeferredUIMessage: [Smalltalk snapshot: true andQuit: true].
+] forkAt: 19.
 
 "
 SerializationData setup.
