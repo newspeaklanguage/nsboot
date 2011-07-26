@@ -31,9 +31,13 @@ SHTextStylerST80 setupForNewsqueak.
 
 [|imageName|
  imageName := 'nsboot-',Date today yyyymmdd.
- imageName asMorph openInWorld; lock. "We don't print to the Transcript because it would be erased by GarbageCollectAggressively"
+ SystemVersion newVersion: imageName.
  Smalltalk saveAs: imageName. 
- WorldState addDeferredUIMessage: [Smalltalk snapshot: true andQuit: true].
+ WorldState addDeferredUIMessage: [
+	Smalltalk snapshot: true andQuit: true.
+	Transcript clear.
+	Transcript show: 'Hello, Brave New World!!'.
+	Transcript cr].
 ] forkAt: 19. "Fork because we want to release the file handle for this file-in before we save."
 
 "
