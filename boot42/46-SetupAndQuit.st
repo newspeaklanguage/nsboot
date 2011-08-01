@@ -37,7 +37,8 @@ SHTextStylerST80 setupForNewsqueak.
 	Smalltalk snapshot: true andQuit: true.
 	Transcript clear.
 	Transcript show: 'Hello, Brave New World!!'.
-	Transcript cr].
+	Transcript cr.
+	OSProcess isWindows ifFalse: [Platform ide IDEWindow open]].
 ] forkAt: 19. "Fork because we want to release the file handle for this file-in before we save."
 
 "
