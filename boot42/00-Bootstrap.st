@@ -6,6 +6,7 @@ ChangeSet fileIntoNewChangeSet: '01-UnloadAllKnownPackages.cs'.
 ChangeSet fileIntoNewChangeSet: '02-BehaviorSchemaChange.st'.
 	Smalltalk saveAs: 'finished02.image'.
 ChangeSet fileIntoNewChangeSet: '03-Other.cs'.
+ChangeSet fileIntoNewChangeSet: '03-Other2.cs'.
 ChangeSet fileIntoNewChangeSet: '04-SetupPreferences.cs'.
 ChangeSet fileIntoNewChangeSet: '05-DefiningClassMetadata.st'.
 ChangeSet fileIntoNewChangeSet: '06-load_NsSvnRepository.st'.
