@@ -3,4 +3,4 @@
 
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
-(repository versionFromFileNamed: 'Newsqueak-mixins-ryan.94.mcz') load
+(repository versionFromFileNamed: 'Newsqueak-mixins-ryan.95.mcz') load
