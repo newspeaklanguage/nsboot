@@ -8,7 +8,7 @@ ChangeSet fileIntoNewChangeSet: '01-UnloadAllKnownPackages.cs'.
 ChangeSet fileIntoNewChangeSet: '03-Other.cs'.
 ChangeSet fileIntoNewChangeSet: '03-Other2.cs'.
 ChangeSet fileIntoNewChangeSet: '04-SetupPreferences.cs'.
-ChangeSet fileIntoNewChangeSet: '05-DefiningClassMetadata.st'.
+"ChangeSet fileIntoNewChangeSet: '05-DefiningClassMetadata.st'."
 ChangeSet fileIntoNewChangeSet: '06-load_NsSvnRepository.st'.
 ChangeSet fileIntoNewChangeSet: '07-load_NsMultilanguage.st'.
 ChangeSet fileIntoNewChangeSet: '08-load_NewsqueakBase.st'.
@@ -40,8 +40,8 @@ ChangeSet fileIntoNewChangeSet: '33-load_Newsqueak-mixins.st'.
 ChangeSet fileIntoNewChangeSet: '34-load_NsFFI.st'.
 ChangeSet fileIntoNewChangeSet: '35-load_BrazilPlumbing.st'.
 ChangeSet fileIntoNewChangeSet: '36-load_Newspeak.st'.
-ChangeSet fileIntoNewChangeSet: '37-WeakSubclasses.st'.
-ChangeSet fileIntoNewChangeSet: '38-load_Newsqueak-Metadata.st'.
+"ChangeSet fileIntoNewChangeSet: '37-WeakSubclasses.st'."
+"ChangeSet fileIntoNewChangeSet: '38-load_Newsqueak-Metadata.st'."
 ChangeSet fileIntoNewChangeSet: '39-load_NOFBootstrap.st'.
 ChangeSet fileIntoNewChangeSet: '40-NewspeakBytecode.cs'.
 ChangeSet fileIntoNewChangeSet: '41-CompilerChanges.cs'.

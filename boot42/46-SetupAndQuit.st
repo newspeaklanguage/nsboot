@@ -31,6 +31,10 @@ NewsqueakDockingBar setup.
 "UnversionedSourceManager setup."
 SHTextStylerST80 setupForNewsqueak.
 
+[Platform nsPlatform kernel takeOver] ifError: [Transcript show: 'takeOver failed'; cr].
+[Platform nsPlatform kernel takeOver2] ifError: [Transcript show: 'takeOver2 failed'; cr].
+NsToolSet releaseMemory: true.
+
 [|imageName|
  imageName := 'nsboot-',Date today yyyymmdd.
  SystemVersion newVersion: imageName.
@@ -41,8 +45,6 @@ SHTextStylerST80 setupForNewsqueak.
 	Transcript show: 'Hello, Brave New World!!'.
 	Transcript cr.
 	OSProcess isWindows ifFalse: [Platform ide IDEWindow open].
-	[Platform nsPlatform kernel takeOver] ifError: [Transcript show: 'takeOver failed'; cr].
-	[Platform nsPlatform kernel takeOver2] ifError: [Transcript show: 'takeOver2 failed'; cr].
 	].
 ] forkAt: 19. "Fork because we want to release the file handle for this file-in before we save."
 
