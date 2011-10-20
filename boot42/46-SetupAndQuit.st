@@ -40,7 +40,10 @@ SHTextStylerST80 setupForNewsqueak.
 	Transcript clear.
 	Transcript show: 'Hello, Brave New World!!'.
 	Transcript cr.
-	OSProcess isWindows ifFalse: [Platform ide IDEWindow open]].
+	OSProcess isWindows ifFalse: [Platform ide IDEWindow open].
+	[Platform nsPlatform kernel takeOver] ifError: [Transcript show: 'takeOver failed'; cr].
+	[Platform nsPlatform kernel takeOver2] ifError: [Transcript show: 'takeOver2 failed'; cr].
+	].
 ] forkAt: 19. "Fork because we want to release the file handle for this file-in before we save."
 
 "
