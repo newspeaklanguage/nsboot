@@ -34,7 +34,6 @@ ChangeSet fileIntoNewChangeSet: '31-load_Newsqueak2.st'.
 ChangeSet fileIntoNewChangeSet: '32-load_Newsqueak-conversions.st'.
 ChangeSet fileIntoNewChangeSet: '33-load_Newsqueak-mixins.st'.
 ChangeSet fileIntoNewChangeSet: '34-load_NsFFI.st'.
-ChangeSet fileIntoNewChangeSet: '35-load_BrazilPlumbing.st'.
 ChangeSet fileIntoNewChangeSet: '36-load_Newspeak.st'.
 ChangeSet fileIntoNewChangeSet: '39-load_NOFBootstrap.st'.
 ChangeSet fileIntoNewChangeSet: '40-NewspeakBytecode.cs'.
