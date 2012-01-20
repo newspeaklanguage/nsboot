@@ -27,10 +27,8 @@ ChangeSet fileIntoNewChangeSet: '22-load_CombinatorialParsing.st'.
 ChangeSet fileIntoNewChangeSet: '23-reload_NewsqueakBase.st'.
 ChangeSet fileIntoNewChangeSet: '26-BaseEnhancements.st'.
 ChangeSet fileIntoNewChangeSet: '27-SHTextStylerST80 setupForNewsqueak.st'.
-ChangeSet fileIntoNewChangeSet: '28-load_Newsqueak1.st'.
 ChangeSet fileIntoNewChangeSet: '29-load_Yield.st'.
 ChangeSet fileIntoNewChangeSet: '30-load_NewspeakCore.st'.
-ChangeSet fileIntoNewChangeSet: '31-load_Newsqueak2.st'.
 ChangeSet fileIntoNewChangeSet: '32-load_Newsqueak-conversions.st'.
 ChangeSet fileIntoNewChangeSet: '33-load_Newsqueak-mixins.st'.
 ChangeSet fileIntoNewChangeSet: '34-load_NsFFI.st'.
