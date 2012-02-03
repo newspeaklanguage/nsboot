@@ -10,20 +10,14 @@ ChangeSet fileIntoNewChangeSet: '04-SetupPreferences.cs'.
 ChangeSet fileIntoNewChangeSet: '06-load_NsSvnRepository.st'.
 ChangeSet fileIntoNewChangeSet: '07-load_NsMultilanguage.st'.
 ChangeSet fileIntoNewChangeSet: '08-load_NewsqueakBase.st'.
-ChangeSet fileIntoNewChangeSet: '09-load_NsBabel.st'.
 ChangeSet fileIntoNewChangeSet: '10-load_NsSystem.st'.
 ChangeSet fileIntoNewChangeSet: '11-load_XML-Parser.st'.
-ChangeSet fileIntoNewChangeSet: '12-MonticelloChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '13-RecreateSpecialObjectsArray.st'.
 ChangeSet fileIntoNewChangeSet: '14-load_FFIKernel.st'.
 ChangeSet fileIntoNewChangeSet: '15-load_OSProcess.st'.
 ChangeSet fileIntoNewChangeSet: '16-load_Shout.st'.
-ChangeSet fileIntoNewChangeSet: '17-CollectionsChanges.cs'.
-ChangeSet fileIntoNewChangeSet: '18-ExceptionsChanges.cs'.
-ChangeSet fileIntoNewChangeSet: '19-PackageInfoChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '20-PackagingCore.st'.
 ChangeSet fileIntoNewChangeSet: '21-load_NewspeakFacelift.st'.
-ChangeSet fileIntoNewChangeSet: '22-load_CombinatorialParsing.st'.
 ChangeSet fileIntoNewChangeSet: '23-reload_NewsqueakBase.st'.
 ChangeSet fileIntoNewChangeSet: '26-BaseEnhancements.st'.
 ChangeSet fileIntoNewChangeSet: '27-SHTextStylerST80 setupForNewsqueak.st'.
@@ -35,8 +29,6 @@ ChangeSet fileIntoNewChangeSet: '34-load_NsFFI.st'.
 ChangeSet fileIntoNewChangeSet: '36-load_Newspeak.st'.
 ChangeSet fileIntoNewChangeSet: '39-load_NOFBootstrap.st'.
 ChangeSet fileIntoNewChangeSet: '40-NewspeakBytecode.cs'.
-ChangeSet fileIntoNewChangeSet: '41-CompilerChanges.cs'.
-ChangeSet fileIntoNewChangeSet: '42-KernelChanges.cs'.
 ChangeSet fileIntoNewChangeSet: '43-load_INIFile-Core.st'.
 ChangeSet fileIntoNewChangeSet: '44-load_Phase2Packages.st'.
 	Smalltalk saveAs: 'aboutToCompileNS3.image'.
