@@ -1,7 +1,7 @@
-wget -c http://ftp.squeak.org/4.3/SqueakCore4.3.zip
-rm -r SqueakCore4.3
-unzip SqueakCore4.3.zip
-mv SqueakCore4.3/* .
+wget -c http://ftp.squeak.org/4.3/Squeak4.3.zip
+rm -r Squeak4.3
+unzip Squeak4.3.zip
+mv Squeak4.3/* .
 
 #one of these will be the right path...
 nsvm Squeak4.3.image 00-Bootstrap.st
