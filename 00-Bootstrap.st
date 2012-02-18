@@ -1,11 +1,9 @@
 
 [
 	Utilities setAuthorInitials: 'bootstrapping'.
-ChangeSet fileIntoNewChangeSet: '001-PartialUnload.cs'.
-ChangeSet fileIntoNewChangeSet: '01-UnloadAllKnownPackages.cs'.
-	Smalltalk saveAs: 'finished02.image'.
 ChangeSet fileIntoNewChangeSet: '03-Other.cs'.
 ChangeSet fileIntoNewChangeSet: '03-Other2.cs'.
+ChangeSet fileIntoNewChangeSet: '03-Other3.cs'.
 ChangeSet fileIntoNewChangeSet: '04-SetupPreferences.cs'.
 ChangeSet fileIntoNewChangeSet: '06-load_NsSvnRepository.st'.
 ChangeSet fileIntoNewChangeSet: '07-load_NsMultilanguage.st'.

@@ -14,4 +14,4 @@ Object subclass: #PluggableTextController
 
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
-(repository versionFromFileNamed: 'Shout-ryan.73.mcz') load.
+(repository loadVersionFromFileNamed: 'Shout-ryan.73.mcz') load.

@@ -9,4 +9,4 @@ Object subclass: #ServiceProvider
 
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
-(repository versionFromFileNamed: 'Newspeak-ryan.255.mcz') load.
+(repository loadVersionFromFileNamed: 'Newspeak-ryan.255.mcz') load.

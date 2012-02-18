@@ -10,17 +10,17 @@ Object subclass: #TestRunner
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
 	
-(repository versionFromFileNamed: 'BrazilForMorphic-ryan.24.mcz') load.
-(repository versionFromFileNamed: 'Brazil-ryan.322.mcz') load.
-(repository versionFromFileNamed: 'ExternalProcess-ryan.25.mcz') load.
-(repository versionFromFileNamed: 'Hopscotch-ryan.274.mcz') load.
-(repository versionFromFileNamed: 'NativeSession-ryan.93.mcz') load.
-(repository versionFromFileNamed: 'NewspeakObjectFormat-ryan.36.mcz') load.
-(repository versionFromFileNamed: 'NewspeakSynchronization-ryan.46.mcz') load.
-(repository versionFromFileNamed: 'NSCollections-ryan.55.mcz') load.
-(repository versionFromFileNamed: 'NSFiles-ryan.29.mcz') load.
-(repository versionFromFileNamed: 'NsSvnRepository2-ryan.42.mcz') load.
-(repository versionFromFileNamed: 'NsToolSet-ryan.44.mcz') load.
-(repository versionFromFileNamed: 'SourceManagement-ryan.198.mcz') load.
-(repository versionFromFileNamed: 'VmMirror-ryan.33.mcz') load.
-(repository versionFromFileNamed: 'Win32API-ryan.46.mcz') load.
+(repository loadVersionFromFileNamed: 'BrazilForMorphic-ryan.24.mcz') load.
+(repository loadVersionFromFileNamed: 'Brazil-ryan.322.mcz') load.
+(repository loadVersionFromFileNamed: 'ExternalProcess-ryan.25.mcz') load.
+(repository loadVersionFromFileNamed: 'Hopscotch-ryan.274.mcz') load.
+(repository loadVersionFromFileNamed: 'NativeSession-ryan.93.mcz') load.
+(repository loadVersionFromFileNamed: 'NewspeakObjectFormat-ryan.36.mcz') load.
+(repository loadVersionFromFileNamed: 'NewspeakSynchronization-ryan.46.mcz') load.
+(repository loadVersionFromFileNamed: 'NSCollections-ryan.55.mcz') load.
+(repository loadVersionFromFileNamed: 'NSFiles-ryan.29.mcz') load.
+(repository loadVersionFromFileNamed: 'NsSvnRepository2-ryan.42.mcz') load.
+(repository loadVersionFromFileNamed: 'NsToolSet-ryan.44.mcz') load.
+(repository loadVersionFromFileNamed: 'SourceManagement-ryan.198.mcz') load.
+(repository loadVersionFromFileNamed: 'VmMirror-ryan.33.mcz') load.
+(repository loadVersionFromFileNamed: 'Win32API-ryan.46.mcz') load.
