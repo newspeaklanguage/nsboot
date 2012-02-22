@@ -16,11 +16,11 @@ ChangeSet fileIntoNewChangeSet: '98-HideNonSmalltalkFromMC.cs'.
 
 MCWorkingCopy allManagers do: [:ea | ea modified: false].
 
-Platform resetEverything.
+BlackMarket resetEverything.
 NsToolSet releaseMemory: true.
 Smalltalk condenseChanges. "Must be after releaseMemory: for reasons beyond me"
 Smalltalk cleanUp.
-Platform resetEverything.
+BlackMarket resetEverything.
 SystemOrganization removeEmptyCategories.
 
 Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
@@ -31,8 +31,8 @@ NewsqueakDockingBar setup.
 "UnversionedSourceManager setup."
 SHTextStylerST80 setupForNewsqueak.
 
-[Platform nsPlatform kernel takeOver] ifError: [Transcript show: 'takeOver failed'; cr].
-[Platform nsPlatform kernel takeOver2] ifError: [Transcript show: 'takeOver2 failed'; cr].
+[BlackMarket platform kernel takeOver] ifError: [Transcript show: 'takeOver failed'; cr].
+[BlackMarket platform kernel takeOver2] ifError: [Transcript show: 'takeOver2 failed'; cr].
 NsToolSet releaseMemory: true.
 
 [|imageName|
@@ -44,7 +44,7 @@ NsToolSet releaseMemory: true.
 	Transcript clear.
 	Transcript show: 'Hello, Brave New World!!'.
 	Transcript cr.
-	OSProcess isWindows ifFalse: [Platform ide IDEWindow open].
+	OSProcess isWindows ifFalse: [BlackMarket ide IDEWindow open].
 	].
 ] forkAt: 19. "Fork because we want to release the file handle for this file-in before we save."
 

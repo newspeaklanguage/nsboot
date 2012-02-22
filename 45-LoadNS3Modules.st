@@ -1,7 +1,7 @@
 
 | runtime platform |
-runtime := NewspeakObjectFormatDeserializer	appFrom: 'BootstrapRuntimeForSqueak.nof'.
+runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'.
 platform := runtime using: VMMirror new.
-Platform nsPlatform: platform.
-Platform nsPlatform bootstrap.
-Platform resetEverything.
+BlackMarket platform: platform.
+BlackMarket platform bootstrap.
+BlackMarket resetEverything.
