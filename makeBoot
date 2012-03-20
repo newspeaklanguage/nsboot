@@ -6,4 +6,6 @@ mv Squeak4.3/* .
 #one of these will be the right path...
 nsvm Squeak4.3.image 00-Bootstrap.st
 /home/ryan/nsvm/nsvm Squeak4.3.image 00-Bootstrap.st
+
+/home/ryan/nsvm2437/nsvm-interpreter Squeak4.3.image 00-Bootstrap.st
 /home/rmacnak/nsvm/nsvm -headless Squeak4.3.image 00-Bootstrap.st

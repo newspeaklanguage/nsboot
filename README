@@ -1,0 +1,12 @@
+To make your own boot image, clone 
+
+hg clone http://bitbucket.org/newspeaklanguage/newspeak
+hg clone http://bitbucket.org/rmacnak/nsboot
+
+such that the repositories are sibling directies.
+
+Then open a fresh Squeak 4.3 image inside the nsboot directory and load the 00-Bootstrap changeset
+
+
+
+
