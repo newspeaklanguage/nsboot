@@ -1,5 +1,6 @@
 
 [
+Smalltalk snapshot: true andQuit: false embedded: false.
 	Utilities setAuthorInitials: 'bootstrapping'.
 ChangeSet fileIntoNewChangeSet: '01-LimitedUnload.cs'.
 ChangeSet fileIntoNewChangeSet: '02-LimitedUnload.cs'.
