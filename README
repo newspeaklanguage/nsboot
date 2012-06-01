@@ -1,7 +1,7 @@
 To make your own boot image, clone 
 
 hg clone http://bitbucket.org/newspeaklanguage/newspeak
-hg clone http://bitbucket.org/rmacnak/nsboot
+hg clone http://bitbucket.org/newspeaklanguage/nsboot
 
 such that the repositories are sibling directies.
 
