@@ -14,7 +14,7 @@ repository := MCDirectoryRepository	new
 (repository loadVersionFromFileNamed: 'Brazil-ryan.323.mcz') load.
 (repository loadVersionFromFileNamed: 'ExternalProcess-ryan.26.mcz') load.
 (repository loadVersionFromFileNamed: 'Hopscotch-ryan.274.mcz') load.
-(repository loadVersionFromFileNamed: 'NativeSession-cadence.96.mcz') load.
+(repository loadVersionFromFileNamed: 'NativeSession-ryan.97.mcz') load.
 (repository loadVersionFromFileNamed: 'NewspeakObjectFormat-ryan.37.mcz') load.
 (repository loadVersionFromFileNamed: 'NewspeakSynchronization-ryan.47.mcz') load.
 (repository loadVersionFromFileNamed: 'NSCollections-ryan.55.mcz') load.
