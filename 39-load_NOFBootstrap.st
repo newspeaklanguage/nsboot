@@ -3,4 +3,4 @@
 
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
-(repository loadVersionFromFileNamed: 'NOFBootstrap-ryan.22.mcz') load.
+(repository loadVersionFromFileNamed: 'NOFBootstrap-ryan.23.mcz') load.
