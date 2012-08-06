@@ -10,7 +10,7 @@ Object subclass: #TestRunner
 repository := MCDirectoryRepository	new
 	directory: (FileDirectory default / 'SmalltalkPackages').	
 	
-(repository loadVersionFromFileNamed: 'BrazilForMorphic-cadence.27.mcz') load.
+(repository loadVersionFromFileNamed: 'BrazilForMorphic-ryan.28.mcz') load.
 (repository loadVersionFromFileNamed: 'Brazil-ryan.323.mcz') load.
 (repository loadVersionFromFileNamed: 'ExternalProcess-ryan.26.mcz') load.
 (repository loadVersionFromFileNamed: 'Hopscotch-ryan.274.mcz') load.
