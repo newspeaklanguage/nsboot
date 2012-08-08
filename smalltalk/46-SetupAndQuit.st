@@ -38,7 +38,6 @@ NsToolSet releaseMemory: true.
 [|imageName|
  imageName := 'nsboot-',Date today yyyymmdd.
  SystemVersion newVersion: imageName.
- Smalltalk saveAs: imageName. 
  WorldState addDeferredUIMessage: [
 	Smalltalk snapshot: true andQuit: true.
 	Transcript clear.
