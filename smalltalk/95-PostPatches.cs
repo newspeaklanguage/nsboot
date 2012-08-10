@@ -1,4 +1,4 @@
 |dir|
-dir := (FileDirectory default / 'CadencePatches').
+dir := (FileDirectory default / 'postpatches').
 dir fileNames do: [:ea |
 			 ChangeSet fileIntoNewChangeSet: (dir fullNameFor: ea)].

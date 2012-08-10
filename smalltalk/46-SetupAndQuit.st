@@ -15,7 +15,7 @@ ChangeSet fileIntoNewChangeSet: 'smalltalk/98-HideNonSmalltalkFromMC.cs'.
 
 MCWorkingCopy allManagers do: [:ea | ea modified: false].
 
-ChangeSet fileIntoNewChangeSet: 'smalltalk/95-CadencePatches.cs'.
+ChangeSet fileIntoNewChangeSet: 'smalltalk/95-PostPatches.cs'.
 
 BlackMarket resetEverything.
 NsToolSet releaseMemory: true.
