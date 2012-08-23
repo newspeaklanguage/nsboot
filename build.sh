@@ -6,11 +6,30 @@ CHANGES=$IM.changes
 ZIP=$IM.zip
 HEADLESS=-headless
 
-case `uname -s` in
-Linux) NSVM=/usr/lib/nsvm/nsvm;;
-Darwin) NSVM="/Applications/Newspeak Virtual Machine.app/Contents/MacOS/Newspeak Virtual Machine";;
-*) NSVM=../nsvm/nsvm;;
-esac
+USAGE="usage: `basename $0` -[h?] [-v vm]"
+NSVM=
+
+while getopts 'v:h?' opt "$@"; do
+	case "$opt" in
+	v)		NSVM="$OPTARG";;
+	h)		HEADLESS="";;
+	\?|*)	echo $USAGE
+			echo '	boot newspeak'
+			echo '	-h: run headful, not headless'
+			echo '	-v vm: use the supplied VM instead of the default'
+			echo '	-?: display this help'
+			test "$opt" = "\?" && exit 0;
+			exit 1;;
+	esac
+done
+
+if [ -z "$NSVM" ]; then
+	case `uname -s` in
+	Linux) NSVM=/usr/lib/nsvm/nsvm;;
+	Darwin) NSVM="/Applications/Newspeak Virtual Machine.app/Contents/MacOS/Newspeak Virtual Machine";;
+	*) NSVM=../nsvm/nsvm;;
+	esac
+fi
 
 date
 
