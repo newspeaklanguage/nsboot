@@ -47,7 +47,7 @@ hg --cwd ../nsboot tip > nsboottip
 zip $ZIP $IMAGE $CHANGES newspeaktip nsboottip
 mkdir ../bootimages
 mv $ZIP ../bootimages
-rm $IMAGE $CHANGES newspeaktip nsboottip
+rm $IMAGE $CHANGES $CHANGES.old newspeaktip nsboottip
 
 date
 
