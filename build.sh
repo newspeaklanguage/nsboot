@@ -33,7 +33,11 @@ fi
 
 date
 
-wget -c http://ftp.squeak.org/4.3/Squeak4.3.zip
+case `uname -s` in
+Darwin) curl http://ftp.squeak.org/4.3/Squeak4.3.zip -o Squeak4.3.zip;;
+*) wget -c http://ftp.squeak.org/4.3/Squeak4.3.zip;;
+esac
+
 rm -r Squeak4.3
 unzip Squeak4.3.zip
 mv Squeak4.3/Squeak4.3.image $IMAGE
