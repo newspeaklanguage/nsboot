@@ -34,7 +34,7 @@ fi
 date
 
 case `uname -s` in
-Darwin) curl http://ftp.squeak.org/4.3/Squeak4.3.zip -o Squeak4.3.zip;;
+Darwin) curl -C - http://ftp.squeak.org/4.3/Squeak4.3.zip -o Squeak4.3.zip;;
 *) wget -c http://ftp.squeak.org/4.3/Squeak4.3.zip;;
 esac
 
