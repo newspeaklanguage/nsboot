@@ -13,7 +13,7 @@ SystemWindow classPool
 ChangeSet fileIntoNewChangeSet: 'smalltalk/98-HideNonSmalltalkFromMC.cs'.
 "This is not part of the 03-Other set because it should come after multilanguage, otherwise attempt to determine language will fail"
 
-ChangeSet fileIntoNewChangeSet: 'smalltalk/95-PostPatches.cs'.
+"ChangeSet fileIntoNewChangeSet: 'smalltalk/95-PostPatches.cs'."
 
 MCWorkingCopy allManagers do: [:ea | ea modified: false].
 
