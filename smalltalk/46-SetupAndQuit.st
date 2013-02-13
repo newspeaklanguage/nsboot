@@ -16,6 +16,8 @@ ChangeSet fileIntoNewChangeSet: 'smalltalk/98-HideNonSmalltalkFromMC.cs'.
 "ChangeSet fileIntoNewChangeSet: 'smalltalk/95-PostPatches.cs'."
 
 MCWorkingCopy allManagers do: [:ea | ea modified: false].
+MCCacheRepository instVarNamed: 'default' put: nil.
+ "Forget about the path to the package cache used during the bootstrap"
 
 BlackMarket resetEverything.
 NsToolSet releaseMemory: true.
@@ -32,7 +34,6 @@ NewsqueakDockingBar setup.
 SHTextStylerST80 setupForNewsqueak.
 
 [BlackMarket platform kernel takeOver] ifError: [Transcript show: 'takeOver failed'; cr].
-[BlackMarket platform kernel takeOver2] ifError: [Transcript show: 'takeOver2 failed'; cr].
 NsToolSet releaseMemory: true.
 
 [|imageName|
