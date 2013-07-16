@@ -5,3 +5,5 @@ package-cache
 *.changes.old
 *.log
 *.zip
+*.orig
+*.merge
