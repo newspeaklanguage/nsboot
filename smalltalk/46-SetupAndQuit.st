@@ -16,8 +16,8 @@ ChangeSet fileIntoNewChangeSet: 'smalltalk/98-HideNonSmalltalkFromMC.cs'.
 "ChangeSet fileIntoNewChangeSet: 'smalltalk/95-PostPatches.cs'."
 
 MCWorkingCopy allManagers do: [:ea | ea modified: false].
-MCCacheRepository instVarNamed: 'default' put: nil.
- "Forget about the path to the package cache used during the bootstrap"
+"Forget about the path to the package cache used during the bootstrap"
+MCRepositoryGroup default removeRepository: MCCacheRepository default.MCCacheRepository instVarNamed: 'default' put: nil.
 
 BlackMarket resetEverything.
 NsToolSet releaseMemory: true.
