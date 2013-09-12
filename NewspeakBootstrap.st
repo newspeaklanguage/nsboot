@@ -73,7 +73,7 @@ boot
 	self loadPackage: 'System-eliot.472.mcz'.
 	Smalltalk recreateSpecialObjectsArray.
 	self loadPackage: 'Compiler.newspeak-eliot.224.mcz'.
-	self loadPackage: 'Kernel.newspeak-tessi.677.mcz'. "N.B. Do *not* use 676"
+	self loadPackage: 'Kernel.newspeak-tessi.679.mcz'. "N.B. Do *not* use 676"
 	"Now throw the switch to compile with the new set"
 	self loadPackage: 'Compiler.newspeak-tessi.235.mcz'.
 	
