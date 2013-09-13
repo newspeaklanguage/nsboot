@@ -41,7 +41,7 @@ boot
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'Yield-ryan.11.mcz'.
 	self loadPackage: 'NewspeakCore-ryan.74.mcz'.
-	self loadPackage: 'Newsqueak-mixins-ryan.106.mcz'.
+	self loadPackage: 'Newsqueak-mixins-tessi.107.mcz'.
 	self loadPackage: 'NsFFI-eliot.34.mcz'.
 	self loadPackage: 'Newspeak-ryan.257.mcz'.
 	self loadPackage: 'NOFBootstrap-ryan.25.mcz'.
