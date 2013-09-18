@@ -41,7 +41,7 @@ boot
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'Yield-ryan.11.mcz'.
 	self loadPackage: 'NewspeakCore-ryan.74.mcz'.
-	self loadPackage: 'Newsqueak-mixins-tessi.107.mcz'.
+	self loadPackage: 'Newsqueak-mixins-tessi.108.mcz'.
 	self loadPackage: 'NsFFI-eliot.34.mcz'.
 	self loadPackage: 'Newspeak-ryan.257.mcz'.
 	self loadPackage: 'NOFBootstrap-ryan.25.mcz'.
@@ -75,7 +75,7 @@ boot
 	self loadPackage: 'Compiler.newspeak-eliot.224.mcz'.
 	self loadPackage: 'Kernel.newspeak-tessi.679.mcz'. "N.B. Do *not* use 676"
 	"Now throw the switch to compile with the new set"
-	self loadPackage: 'Compiler.newspeak-tessi.235.mcz'.
+	self loadPackage: 'Compiler.newspeak-tessi.236.mcz'.
 	
 	self loadNewspeakModules.
 
