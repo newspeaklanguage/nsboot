@@ -57,11 +57,9 @@ boot
 	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
 	self loadPackage: 'Hopscotch-ryan.275.mcz'.
 	self loadPackage: 'NativeSession-eliot.99.mcz'.
-	self loadPackage: 'NewspeakSynchronization-ryan.47.mcz'.
 	self loadPackage: 'NSCollections-ryan.55.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
 	self loadPackage: 'NsToolSet-ryan.48.mcz'.
-	self loadPackage: 'VmMirror-ryan.33.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
 	
 	self loadChangeset: '95-PostPatches.cs'.
