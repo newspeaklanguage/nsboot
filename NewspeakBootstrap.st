@@ -29,7 +29,7 @@ boot
 	self loadChangeset: '04-SetupPreferences.cs'.
 	self loadPackage: 'NsMultilanguage-ryan.79.mcz'.
 	self loadPackage: 'NewsqueakBase-ryan.96.mcz'.
-	self loadPackage: 'NsSystem-tessi.61.mcz'.
+	self loadPackage: 'NsSystem-tessi.62.mcz'.
 	self loadPackage: 'XML-Parser-yaron.10.mcz'.
 	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
 	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.
