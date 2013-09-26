@@ -40,7 +40,7 @@ boot
 	self loadChangeset: '26-BaseEnhancements.st'.
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'Yield-ryan.11.mcz'.
-	self loadPackage: 'NewspeakCore-ryan.74.mcz'.
+	self loadPackage: 'NewspeakCore-ryan.75.mcz'.
 	self loadPackage: 'Newsqueak-mixins-tessi.108.mcz'.
 	self loadPackage: 'NsFFI-eliot.34.mcz'.
 	self loadPackage: 'Newspeak-ryan.257.mcz'.
