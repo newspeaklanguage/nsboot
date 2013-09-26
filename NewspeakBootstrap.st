@@ -68,7 +68,7 @@ boot
 		[:wc | #('Compiler*' 'Kernel*' 'System*') anySatisfy: 
 			[:pat| pat match: wc package name]]) 
 				do: [:wc| wc modified: false].
-	self loadPackage: 'System-eliot.472.mcz'.
+	self loadPackage: 'System-tessi.473.mcz'.
 	Smalltalk recreateSpecialObjectsArray.
 	self loadPackage: 'Compiler.newspeak-eliot.224.mcz'.
 	self loadPackage: 'Kernel.newspeak-tessi.679.mcz'. "N.B. Do *not* use 676"
