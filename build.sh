@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 IM=nsboot-`date +%Y-%m-%d`
 IMAGE=$IM.image
@@ -34,11 +34,11 @@ fi
 date
 
 case `uname -s` in
-Darwin) curl -C - http://ftp.squeak.org/4.3/Squeak4.3.zip -o Squeak4.3.zip;;
-*) wget -c http://ftp.squeak.org/4.3/Squeak4.3.zip;;
+Darwin) curl -C - http://ftp.squeak.org/4.3/Squeak4.3.zip -o Squeak4.3.zip || true;;
+*) wget -c http://ftp.squeak.org/4.3/Squeak4.3.zip || true;;
 esac
 
-rm -r Squeak4.3
+rm -rf Squeak4.3
 unzip Squeak4.3.zip
 mv Squeak4.3/Squeak4.3.image $IMAGE
 mv Squeak4.3/Squeak4.3.changes $CHANGES
