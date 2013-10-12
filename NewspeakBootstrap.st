@@ -55,7 +55,7 @@ boot
 	 This particular version has the version of UUID class>>#String:
 	 that we need."
 	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
-	self loadPackage: 'Hopscotch-ryan.275.mcz'.
+	self loadPackage: 'Hopscotch-tessi.276.mcz'.
 	self loadPackage: 'NativeSession-eliot.99.mcz'.
 	self loadPackage: 'NSCollections-ryan.55.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
