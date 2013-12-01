@@ -27,7 +27,7 @@ boot
 	self loadChangeset: '03-Other2.cs'.
 	self loadChangeset: '03-Other3.cs'.
 	self loadChangeset: '04-SetupPreferences.cs'.
-	self loadPackage: 'NsMultilanguage-ryan.79.mcz'.
+	self loadPackage: 'NsMultilanguage-ryan.80.mcz'.
 	self loadPackage: 'NewsqueakBase-ryan.96.mcz'.
 	self loadPackage: 'NsSystem-tessi.62.mcz'.
 	self loadPackage: 'XML-Parser-yaron.10.mcz'.
