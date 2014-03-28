@@ -1,0 +1,11 @@
+How to get to Squeak4.3.3-spur.image/.changes
+
+1. start up a 4.3 image, do Smalltalk condenseChanges and save as Squeak4.3.1
+2. transform Squeak4.3.1.image to Squeak4.3.1-spur.image using SpurBootstrap
+3. start-up Squeak4.3.1-spur.image, file-in MonticelloPatches.st, and save as
+	Squeak4.3.2-spur.image.
+4) set the background colour to a grey if you want to use this image in the
+    simulator.  Decompressing the rice paper bitmap takes the simulator forever.
+5. Start-up Squeak4.3.2-spur.image, open the Monticello Browser, open the
+   Squeak4.3/package-cache repository, load the patched Collections, Kernel
+   and System packages.  Save as Squeak4.3.3-spur
