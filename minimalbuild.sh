@@ -6,12 +6,16 @@ CHANGES=$IM.changes
 HEADLESS=-headless
 HEADLESS=
 TIME=
+EXTRAARGS=
+USEGDB=
 
 USAGE="usage: `basename $0` -[h?] [-v vm] [-p path] [-u]"
 NSVM=nsspurcfvm
 
-while getopts 'v:p:uht?' opt "$@"; do
+while getopts 'a:v:p:guht?' opt "$@"; do
 	case "$opt" in
+	a)		EXTRAARGS="$OPTARG";;
+	g)		USEGDB=1;;
 	v)		NSVM="$OPTARG";;
 	h)		HEADLESS="";;
 	p)		IMAGEPATH="$OPTARG";;
@@ -34,5 +38,10 @@ date
 cp -p Squeak4.3/Squeak4.3.3-spur.image $IMAGE
 cp -p Squeak4.3/Squeak4.3.3-spur.changes $CHANGES
 
-echo "$NSVM" $HEADLESS $IMAGE NewspeakBootstrap.st
-$TIME "$NSVM" $HEADLESS $IMAGE NewspeakBootstrap.st
+if [ -z "$USEGDB" ]; then
+	echo "$NSVM" $HEADLESS $EXTRAARGS $IMAGE NewspeakBootstrap.st
+	$TIME "$NSVM" $HEADLESS $EXTRAARGS $IMAGE NewspeakBootstrap.st
+else
+	echo run $HEADLESS $EXTRAARGS $IMAGE NewspeakBootstrap.st
+	gdb "$NSVM"
+fi
