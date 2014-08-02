@@ -1,1 +1,162 @@
-'From nsboot-2014-07-27 of 27 July 2014 [latest update: #11860] on 27 July 2014 at 2:12:25 pm'!Object subclass: #NewspeakBootstrap	instanceVariableNames: ''	classVariableNames: ''	poolDictionaries: ''	category: 'NewspeakBootstrap'!"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!NewspeakBootstrap class	instanceVariableNames: ''!!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'gbracha 7/27/2014 12:46'!boot	"Force a save to avoid dialog about incompatibility of JIT-saved images with pre-JIT VMs."	Smalltalk snapshot: true andQuit: false embedded: false.	Utilities setAuthorInitials: 'bootstrapping'.	"This first change helps (filehandlelimits) supress issues with running 	 out of file-handles.  This can happen if your limit is	 low (1024) and 	 Monticello is examing overrides on packages, where it will make a 	 copy of the source file streams for each method."	self loadChangeset: 'filehandlelimits.1.cs'.	self loadChangeset: '01-LimitedUnload.cs'.	self loadChangeset: '02-LimitedUnload.cs'.	self loadChangeset: '03-Other.cs'.	self loadChangeset: '03-Other2.cs'.	self loadChangeset: '03-Other3.cs'.	self loadChangeset: '04-SetupPreferences.cs'.	self loadChangeset: '05-NewspeakLiteralPrinting.cs'.	self loadPackage: 'NsMultilanguage-ryan.84.mcz'.	self loadPackage: 'NewsqueakBase-ryan.97.mcz'.	self loadPackage: 'NsSystem-tessi.62.mcz'.	self loadPackage: 'XML-Parser-bwesterg.15.mcz'.	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.	self loadPackage: 'OSProcess-ryan.11.mcz'.	self loadPackage: 'Shout-bwesterg.75.mcz'.	self loadChangeset: '20-PackagingCore.st'.	self loadPackage: 'NewspeakFacelift-ryan.8.mcz'.	self loadChangeset: '26-BaseEnhancements.st'.	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.	self loadPackage: 'NewspeakCore-ryan.78.mcz'.	self loadPackage: 'Newsqueak-mixins-tessi.108.mcz'.	self loadPackage: 'NsFFI-eliot.35.mcz'.	self loadPackage: 'Newspeak-ryan.257.mcz'.	self loadPackage: 'NOFBootstrap-ryan.26.mcz'.	self loadChangeset: '40-NewspeakBytecode.cs'.	self loadPackage: 'INIFile-Core-ryan.2.mcz'.	self loadPackage: 'BrazilForMorphic-vassili.34.mcz'.	self loadPackage: 'Brazil-ryan.323.mcz'.	self loadPackage: 'ExternalProcess-ryan.29.mcz'.	"Supress monticello load warnings for the Network package. 	 It has been marked dirty as a side-effect of changesets above.	 This particular version has the version of UUID class>>#String:	 that we need."	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].	self loadPackage: 'Hopscotch-tessi.276.mcz'.	self loadPackage: 'NativeSession-eliot.99.mcz'.	self loadPackage: 'NSCollections-ryan.55.mcz'.	self loadPackage: 'NSFiles-ryan.30.mcz'.	self loadPackage: 'NsToolSet-gbracha.50.mcz'.	self loadPackage: 'Win32API-ryan.46.mcz'.		self loadChangeset: '95-PostPatches.cs'.		(MCWorkingCopy allManagers select:		[:wc | #('Compiler*' 'Kernel*' 'System*' 'Files*') anySatisfy: 			[:pat| pat match: wc package name]]) 				do: [:wc| wc modified: false].		self loadPackage: 'Files-eliot.119.mcz'.	self loadPackage: 'System-tessi.473.mcz'.	Smalltalk recreateSpecialObjectsArray.	self loadPackage: 'Compiler.newspeak-eliot.224.mcz'.	self loadPackage: 'Kernel.newspeak-bwesterg.680.mcz'. "N.B. Do *not* use 676"	"Now throw the switch to compile with the new set"	self loadPackage: 'Compiler.newspeak-bwesterg.238.mcz'.		self loadNewspeakModules.	self loadResources.	self loadChangeset: '46-SetupAndQuit.st'.		Utilities setAuthorInitials: ''.! !!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 15:16'!cr	Transcript cr.	FileStream stdout cr.! !!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 14:38'!initialize	[WorldState addDeferredUIMessage: [self boot]] forkAt: 20 named: 'Bootstrapping'! !!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:50'!loadChangeset: filename	self report: 'Loading changeset ', filename during:		[ChangeSet fileIntoNewChangeSet: 			(FileDirectory default / 'smalltalk' fullNameFor: filename)].! !!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:12'!loadNewspeakModules	| runtime platform repoDir files |	self print: #aa.runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'.        self print: #a.	platform := runtime using: VMMirror new.        self print: #b.	BlackMarket platform: platform.        self print: #c.		Transcript open.	repoDir := (FileDirectory default containingDirectory / 'newspeak').	files := repoDir fileNames select: [:ea | ea endsWith: '.ns3'].	files := files sortBy: [:a :b | a < b].	files do: [:ea | 		self report: 'Compiling module ', ea during:			[ | klass |			klass := LanguageFileReader new compileFile: (repoDir fullNameFor: ea).			PackageInfo named: (klass basicCategory findTokens: '-') first.			BlackMarket namespace at: klass name put: klass]].		BlackMarket resetEverything.! !!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:48'!loadPackage: filename	self report: 'Loading package ', filename during:		[ | repository |		repository := MCDirectoryRepository new			directory: (FileDirectory default / 'smalltalk').			(repository loadVersionFromFileNamed: filename) load].! !!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:21'!loadResources	| repoDir files |	repoDir := (FileDirectory default containingDirectory / 'newspeak').	files := repoDir fileNames select: [:ea | ea endsWith: '.png'].	files := files sortBy: [:a :b | a < b].	files do: [:ea | 		self report: 'Loading resource ', ea during:			[ | name form |			form := PNGReadWriter formFromFileNamed: (repoDir fullNameFor: ea).			name := (ea allButLast: 4) asSymbol.			Smalltalk at: name put: form.			BlackMarket namespace at: name put: form]].		BlackMarket resetEverything.! !!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:58'!print: string	Transcript nextPutAll: string; flush.	FileStream stdout nextPutAll: string.! !!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:54'!report: message during: block	| time |	self cr.	self print: message.	time := block timeToRun.	self print: '. Done in ', (time / 1000) floor printString, ' seconds.'.! !NewspeakBootstrap initialize!
+'From nsboot-2014-07-27 of 27 July 2014 [latest update: #11860] on 27 July 2014 at 2:12:25 pm'!
+Object subclass: #NewspeakBootstrap
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NewspeakBootstrap'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+NewspeakBootstrap class
+	instanceVariableNames: ''!
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'gbracha 7/27/2014 12:46'!
+boot
+	"Force a save to avoid dialog about incompatibility of JIT-saved images with pre-JIT VMs."
+	Smalltalk snapshot: true andQuit: false embedded: false.
+
+	Utilities setAuthorInitials: 'bootstrapping'.
+	"This first change helps (filehandlelimits) supress issues with running 
+	 out of file-handles.  This can happen if your limit is	 low (1024) and 
+	 Monticello is examing overrides on packages, where it will make a 
+	 copy of the source file streams for each method."
+	self loadChangeset: 'filehandlelimits.1.cs'.
+	self loadChangeset: '01-LimitedUnload.cs'.
+	self loadChangeset: '02-LimitedUnload.cs'.
+	self loadChangeset: '03-Other.cs'.
+	self loadChangeset: '03-Other2.cs'.
+	self loadChangeset: '03-Other3.cs'.
+	self loadChangeset: '04-SetupPreferences.cs'.
+	self loadChangeset: '05-NewspeakLiteralPrinting.cs'.
+	self loadPackage: 'NsMultilanguage-ryan.84.mcz'.
+	self loadPackage: 'NewsqueakBase-ryan.97.mcz'.
+	self loadPackage: 'NsSystem-tessi.62.mcz'.
+	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
+	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
+	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.
+	self loadPackage: 'OSProcess-ryan.11.mcz'.
+	self loadPackage: 'Shout-bwesterg.75.mcz'.
+	self loadChangeset: '20-PackagingCore.st'.
+	self loadPackage: 'NewspeakFacelift-ryan.8.mcz'.
+	self loadChangeset: '26-BaseEnhancements.st'.
+	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
+	self loadPackage: 'NewspeakCore-ryan.78.mcz'.
+	self loadPackage: 'Newsqueak-mixins-tessi.108.mcz'.
+	self loadPackage: 'NsFFI-bwesterg.36.mcz'.
+	self loadPackage: 'Newspeak-ryan.257.mcz'.
+	self loadPackage: 'NOFBootstrap-ryan.26.mcz'.
+	self loadChangeset: '40-NewspeakBytecode.cs'.
+	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
+	self loadPackage: 'BrazilForMorphic-vassili.34.mcz'.
+	self loadPackage: 'Brazil-ryan.323.mcz'.
+	self loadPackage: 'ExternalProcess-ryan.29.mcz'.
+	"Supress monticello load warnings for the Network package. 
+	 It has been marked dirty as a side-effect of changesets above.
+	 This particular version has the version of UUID class>>#String:
+	 that we need."
+	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
+	self loadPackage: 'Hopscotch-tessi.276.mcz'.
+	self loadPackage: 'NativeSession-eliot.99.mcz'.
+	self loadPackage: 'NSCollections-ryan.55.mcz'.
+	self loadPackage: 'NSFiles-ryan.30.mcz'.
+	self loadPackage: 'NsToolSet-gbracha.50.mcz'.
+	self loadPackage: 'Win32API-ryan.46.mcz'.	
+	self loadChangeset: '95-PostPatches.cs'.
+	
+	(MCWorkingCopy allManagers select:
+		[:wc | #('Compiler*' 'Kernel*' 'System*' 'Files*') anySatisfy: 
+			[:pat| pat match: wc package name]]) 
+				do: [:wc| wc modified: false].	
+	self loadPackage: 'Files-eliot.119.mcz'.
+	self loadPackage: 'System-tessi.473.mcz'.
+	Smalltalk recreateSpecialObjectsArray.
+	self loadPackage: 'Compiler.newspeak-eliot.224.mcz'.
+	self loadPackage: 'Kernel.newspeak-bwesterg.680.mcz'. "N.B. Do *not* use 676"
+	"Now throw the switch to compile with the new set"
+	self loadPackage: 'Compiler.newspeak-bwesterg.238.mcz'.
+	
+	self loadNewspeakModules.
+	self loadResources.
+
+	self loadChangeset: '46-SetupAndQuit.st'.
+	
+	Utilities setAuthorInitials: ''.! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 15:16'!
+cr
+	Transcript cr.
+	FileStream stdout cr.! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 14:38'!
+initialize
+	[WorldState addDeferredUIMessage: [self boot]] forkAt: 20 named: 'Bootstrapping'! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:50'!
+loadChangeset: filename
+	self report: 'Loading changeset ', filename during:
+		[ChangeSet fileIntoNewChangeSet: 
+			(FileDirectory default / 'smalltalk' fullNameFor: filename)].! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:12'!
+loadNewspeakModules
+	| runtime platform repoDir files |
+	self print: #aa.
+runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'.
+        self print: #a.
+	platform := runtime using: VMMirror new.
+        self print: #b.
+	BlackMarket platform: platform.
+        self print: #c.
+	
+	Transcript open.
+	repoDir := (FileDirectory default containingDirectory / 'newspeak').
+	files := repoDir fileNames select: [:ea | ea endsWith: '.ns3'].
+	files := files sortBy: [:a :b | a < b].
+	files do: [:ea | 
+		self report: 'Compiling module ', ea during:
+			[ | klass |
+			klass := LanguageFileReader new compileFile: (repoDir fullNameFor: ea).
+			PackageInfo named: (klass basicCategory findTokens: '-') first.
+			BlackMarket namespace at: klass name put: klass]].
+	
+	BlackMarket resetEverything.! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:48'!
+loadPackage: filename
+	self report: 'Loading package ', filename during:
+		[ | repository |
+		repository := MCDirectoryRepository new
+			directory: (FileDirectory default / 'smalltalk').	
+		(repository loadVersionFromFileNamed: filename) load].! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:21'!
+loadResources
+	| repoDir files |
+	repoDir := (FileDirectory default containingDirectory / 'newspeak').
+	files := repoDir fileNames select: [:ea | ea endsWith: '.png'].
+	files := files sortBy: [:a :b | a < b].
+	files do: [:ea | 
+		self report: 'Loading resource ', ea during:
+			[ | name form |
+			form := PNGReadWriter formFromFileNamed: (repoDir fullNameFor: ea).
+			name := (ea allButLast: 4) asSymbol.
+			Smalltalk at: name put: form.
+			BlackMarket namespace at: name put: form]].
+	
+	BlackMarket resetEverything.! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:58'!
+print: string
+	Transcript nextPutAll: string; flush.
+	FileStream stdout nextPutAll: string.! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:54'!
+report: message during: block
+	| time |
+	self cr.
+	self print: message.
+	time := block timeToRun.
+	self print: '. Done in ', (time / 1000) floor printString, ' seconds.'.! !
+
+
+NewspeakBootstrap initialize!
