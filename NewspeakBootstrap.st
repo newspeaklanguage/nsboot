@@ -49,7 +49,7 @@ boot
 	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
 	self loadPackage: 'BrazilForMorphic-vassili.34.mcz'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
-	self loadPackage: 'ExternalProcess-ryan.29.mcz'.
+	self loadPackage: 'ExternalProcess-rmacnak.30.mcz'.
 	"Supress monticello load warnings for the Network package. 
 	 It has been marked dirty as a side-effect of changesets above.
 	 This particular version has the version of UUID class>>#String:
