@@ -42,7 +42,7 @@ boot
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'NewspeakCore-ryan.78.mcz'.
 	self loadPackage: 'Newsqueak-mixins-rmacnak.109.mcz'.
-	self loadPackage: 'NsFFI-bwesterg.36.mcz'.
+	self loadPackage: 'NsFFI-rmacnak.37.mcz'.
 	self loadPackage: 'Newspeak-ryan.257.mcz'.
 	self loadPackage: 'NOFBootstrap-eliot.35.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
