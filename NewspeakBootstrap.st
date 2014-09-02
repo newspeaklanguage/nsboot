@@ -42,7 +42,7 @@ boot
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'NewspeakCore-ryan.78.mcz'.
 	self loadPackage: 'Newsqueak-mixins-rmacnak.109.mcz'.
-	self loadPackage: 'NsFFI-rmacnak.37.mcz'.
+	self loadPackage: 'NsFFI-rmacnak.38.mcz'.
 	self loadPackage: 'Newspeak-ryan.257.mcz'.
 	self loadPackage: 'NOFBootstrap-eliot.35.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
@@ -56,7 +56,7 @@ boot
 	 that we need."
 	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
-	self loadPackage: 'NativeSession-eliot.99.mcz'.
+	self loadPackage: 'NativeSession-rmacnak.100.mcz'.
 	self loadPackage: 'NSCollections-ryan.55.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
 	self loadPackage: 'NsToolSet-gbracha.50.mcz'.
