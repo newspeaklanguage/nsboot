@@ -7,3 +7,8 @@ package-cache
 *.zip
 *.orig
 *.merge
+Squeak4.3/CogSpur*
+Squeak4.3/Newspeak Virtual*
+Squeak4.3/SqueakV41.sources
+Squeak4.3/SqueakDebug.log
+Squeak4.3/crash.dmp

@@ -35,8 +35,8 @@ done
 
 date
 
-cp -p Squeak4.3/Squeak4.3.3-spur.image $IMAGE
-cp -p Squeak4.3/Squeak4.3.3-spur.changes $CHANGES
+cp -p Squeak4.3/Squeak4.3.1-spur.image $IMAGE
+cp -p Squeak4.3/Squeak4.3.1-spur.changes $CHANGES
 
 if [ -z "$USEGDB" ]; then
 	echo "$NSVM" $HEADLESS $EXTRAARGS $IMAGE NewspeakBootstrap.st

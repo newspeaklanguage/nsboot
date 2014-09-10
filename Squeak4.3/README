@@ -1,11 +1,16 @@
-How to get to Squeak4.3.3-spur.image/.changes
+How to produce Squeak4.3.2-spur.image & changes
 
-1. start up a 4.3 image, do Smalltalk condenseChanges and save as Squeak4.3.1
-2. transform Squeak4.3.1.image to Squeak4.3.1-spur.image using SpurBootstrap
-3. start-up Squeak4.3.1-spur.image, file-in MonticelloPatches.st, and save as
-	Squeak4.3.2-spur.image.
-4) set the background colour to a grey if you want to use this image in the
-    simulator.  Decompressing the rice paper bitmap takes the simulator forever.
-5. Start-up Squeak4.3.2-spur.image, open the Monticello Browser, open the
-   Squeak4.3/package-cache repository, load the patched Collections, Kernel
-   and System packages.  Save as Squeak4.3.3-spur
+1. run getsqueak43.sh
+	- this downloads 4.3
+2. run build431Image.sh
+	- this builds a 4.3 image with condensed changes called Squeak4.3.1
+3. run buildspurtrunkvmmakerimage.sh
+	- this downloads the latest Spur trunk image and creates a VMMaker image
+	  from it called SpurVMMaker
+4. run buildspur431.sh
+	- this uses SpurVMMaker to convert Squeak4.3.1 to Squeak4.3.1-spur and
+	  create patched versions of the relevant packages in ../smalltalk
+
+or ./build.sh for short
+
+Eliot, 2014 Sep 10
