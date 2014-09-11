@@ -8,17 +8,19 @@ HEADLESS=
 TIME=
 EXTRAARGS=
 USEGDB=
+SCRIPT=NewspeakBootstrap.st
 
-USAGE="usage: `basename $0` -[h?] [-v vm] [-p path] [-u]"
+USAGE="usage: `basename $0` -[h?] [-v vm] [-p path] [-P]"
 NSVM=nsspurcfvm
 
-while getopts 'a:v:p:guht?' opt "$@"; do
+while getopts 'a:v:p:gPuht?' opt "$@"; do
 	case "$opt" in
 	a)		EXTRAARGS="$OPTARG";;
 	g)		USEGDB=1;;
 	v)		NSVM="$OPTARG";;
 	h)		HEADLESS="";;
 	p)		IMAGEPATH="$OPTARG";;
+	P)		SCRIPT=NewspeakBootstrap-partial.st;;
 	t)		TIME=time;;
 	\?|*)	echo $USAGE
 			echo '	boot newspeak'
@@ -39,9 +41,9 @@ cp -p Squeak4.3/Squeak4.3.1-spur.image $IMAGE
 cp -p Squeak4.3/Squeak4.3.1-spur.changes $CHANGES
 
 if [ -z "$USEGDB" ]; then
-	echo "$NSVM" $HEADLESS $EXTRAARGS $IMAGE NewspeakBootstrap.st
-	$TIME "$NSVM" $HEADLESS $EXTRAARGS $IMAGE NewspeakBootstrap.st
+	echo "$NSVM" $HEADLESS $EXTRAARGS $IMAGE $SCRIPT
+	$TIME "$NSVM" $HEADLESS $EXTRAARGS $IMAGE $SCRIPT
 else
-	echo run $HEADLESS $EXTRAARGS $IMAGE NewspeakBootstrap.st
+	echo run $HEADLESS $EXTRAARGS $IMAGE $SCRIPT
 	gdb "$NSVM"
 fi
