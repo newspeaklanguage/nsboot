@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-IM=nsboot-`date +%Y-%m-%d`
+IM=nsboot-spur-`date +%Y-%m-%d`
 IMAGE=$IM.image
 CHANGES=$IM.changes
 IMAGEPATH="../bootimages"
@@ -32,23 +32,17 @@ done
 if [ -z "$NSVM" ]; then
 	case `uname -s` in
 	Linux) NSVM=/usr/lib/nsvm/nsvm;;
-	Darwin) NSVM="/Applications/Newspeak Virtual Machine.app/Contents/MacOS/Newspeak Virtual Machine";;
+	Darwin) NSVM="/Applications/Newspeak Spur Virtual Machine.app/Contents/MacOS/Newspeak Virtual Machine";;
 	*) NSVM=../nsvm/nsvm;;
 	esac
 fi
 
 date
 
-case `uname -s` in
-Darwin) curl -C - http://ftp.squeak.org/4.3/Squeak4.3.zip -o Squeak4.3.zip || true;;
-*) wget -c http://ftp.squeak.org/4.3/Squeak4.3.zip || true;;
-esac
+cp -p Squeak4.3/Squeak4.3.1-spur.image $IMAGE
+cp -p Squeak4.3/Squeak4.3.1-spur.changes $CHANGES
 
-rm -rf Squeak4.3
-unzip Squeak4.3.zip
-mv Squeak4.3/Squeak4.3.image $IMAGE
-mv Squeak4.3/Squeak4.3.changes $CHANGES
-
+echo "$NSVM" $HEADLESS $IMAGE NewspeakBootstrap.st
 "$NSVM" $HEADLESS $IMAGE NewspeakBootstrap.st
 
 if [ -z "$NOZIP" ]; then
