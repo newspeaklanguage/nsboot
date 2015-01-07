@@ -18,7 +18,7 @@ boot
 	Utilities setAuthorInitials: 'bootstrapping'.
 	"Ensure that preempting a process puts it to the head of its run queue,
 	 instead of Blue Book Behavior."
-	Smalltalk vmParameterAt: 48 put: 4.
+	Smalltalk vmParameterAt: 48 put: ((Smalltalk vmParameterAt: 48) bitOr: 2r100).
 	"This first change helps (filehandlelimits) supress issues with running 
 	 out of file-handles.  This can happen if your limit is	 low (1024) and 
 	 Monticello is examing overrides on packages, where it will make a 
