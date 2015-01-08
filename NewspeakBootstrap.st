@@ -33,7 +33,7 @@ boot
 	self loadPackage: 'Tests-eliot.140.mcz'.
 	self loadPackage: 'NsMultilanguage-ryan.84.mcz'.
 	self loadPackage: 'NewsqueakBase-ryan.97.mcz'.
-	self loadPackage: 'NsSystem-tessi.62.mcz'.
+	self loadPackage: 'NsSystem-rmacnak.63.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
 	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
 	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.
@@ -44,25 +44,25 @@ boot
 	self loadChangeset: '26-BaseEnhancements.st'.
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'NewspeakCore-bwesterg.80.mcz'.
-	self loadPackage: 'Newsqueak-mixins-tessi.108.mcz'.
-	self loadPackage: 'NsFFI-eliot.37.mcz'.
+	self loadPackage: 'Newsqueak-mixins-rmacnak.109.mcz'.
+	self loadPackage: 'NsFFI-bwesterg.39.mcz'.
 	self loadPackage: 'Newspeak-ryan.257.mcz'.
 	self loadPackage: 'NOFBootstrap-eliot.35.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
 	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
 	self loadPackage: 'BrazilForMorphic-vassili.34.mcz'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
-	self loadPackage: 'ExternalProcess-ryan.29.mcz'.
+	self loadPackage: 'ExternalProcess-rmacnak.30.mcz'.
 	"Supress monticello load warnings for the Network package. 
 	 It has been maked dirty as a side-effect of changesets above.
 	 This particular version has the version of UUID class>>#String:
 	 that we need."
 	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
-	self loadPackage: 'NativeSession-eliot.99.mcz'.
+	self loadPackage: 'NativeSession-rmacnak.100.mcz'.
 	self loadPackage: 'NSCollections-ryan.55.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
-	self loadPackage: 'NsToolSet-bwesterg.49.mcz'.
+	self loadPackage: 'NsToolSet-gbracha.50.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
 	
 	self loadChangeset: '95-PostPatches.cs'.
