@@ -45,14 +45,14 @@ boot
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'NewspeakCore-bwesterg.80.mcz'.
 	self loadPackage: 'Newsqueak-mixins-tessi.108.mcz'.
-	self loadPackage: 'NsFFI-eliot.37.mcz'.
+	self loadPackage: 'NsFFI-rmacnak.38.mcz'.
 	self loadPackage: 'Newspeak-ryan.257.mcz'.
 	self loadPackage: 'NOFBootstrap-eliot.35.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
 	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
 	self loadPackage: 'BrazilForMorphic-vassili.34.mcz'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
-	self loadPackage: 'ExternalProcess-ryan.29.mcz'.
+	self loadPackage: 'ExternalProcess-rmacnak.30.mcz'.
 	"Supress monticello load warnings for the Network package. 
 	 It has been maked dirty as a side-effect of changesets above.
 	 This particular version has the version of UUID class>>#String:
