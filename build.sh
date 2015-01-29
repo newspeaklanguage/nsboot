@@ -1,9 +1,9 @@
-#!/bin/sh -e
+#!/bin/sh -ex
 
-IM=nsboot-spur-`date +%Y-%m-%d`
+IM=ns-`date +%Y-%m-%d`
 IMAGE=$IM.image
 CHANGES=$IM.changes
-IMAGEPATH="../bootimages"
+IMAGEPATH="./out"
 ZIP=$IM.zip
 HEADLESS=-headless
 
@@ -37,12 +37,9 @@ if [ -z "$NSVM" ]; then
 	esac
 fi
 
-date
-
 cp -p Squeak4.3/Squeak4.3.1-spur.image $IMAGE
 cp -p Squeak4.3/Squeak4.3.1-spur.changes $CHANGES
 
-echo "$NSVM" $HEADLESS $IMAGE NewspeakBootstrap.st
 "$NSVM" $HEADLESS $IMAGE NewspeakBootstrap.st
 
 if [ -z "$NOZIP" ]; then
@@ -53,12 +50,11 @@ if [ -z "$NOZIP" ]; then
 	mkdir -p $IMAGEPATH || true
 	mv $ZIP $IMAGEPATH
 	rm $IMAGE $CHANGES $CHANGES.old newspeaktip nsboottip
-	date # date output might be used for deployment scripts. if not, remove this line
 else
 	mkdir -p $IMAGEPATH || true
 	cp -f $IMAGE   "$IMAGEPATH/$IMAGE"
 	cp -f $CHANGES "$IMAGEPATH/$CHANGES"
 	rm $IMAGE $CHANGES $CHANGES.old
 	echo "\n"
-        echo "`pwd`/../bootimages/$IMAGE"
+        echo "`pwd`/$IMAGEPATH/$IMAGE"
 fi

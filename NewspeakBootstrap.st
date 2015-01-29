@@ -33,7 +33,7 @@ boot
 	self loadPackage: 'Tests-eliot.140.mcz'.
 	self loadPackage: 'NsMultilanguage-ryan.84.mcz'.
 	self loadPackage: 'NewsqueakBase-ryan.97.mcz'.
-	self loadPackage: 'NsSystem-rmacnak.64.mcz'.
+	self loadPackage: 'NsSystem-rmacnak.66.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
 	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
 	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.
@@ -74,14 +74,14 @@ boot
 	self loadPackage: 'Files-eliot.119.mcz'.
 	self loadPackage: 'System.spur-tessi.473.mcz'.
 	Smalltalk recreateSpecialObjectsArray.
-	self loadPackage: 'Compiler.spur.newspeak-eliot.242.mcz'.
+	self loadPackage: 'Compiler.spur.newspeak-rmacnak.244.mcz'.
 	"EncoderForNewsqueakV4 is the alternate instruction set but isn't installed
 	 in CompiledMethod's class vars yet.  CompiledMethod will complain that
 	 methods with the alternate set's flag alreayd exist.  Squash te warning."
 	[CompiledMethod installSecondaryBytecodeSet: EncoderForNewsqueakV4]
 		on: Warning
 		do: [:ex| ex resume].
-	self loadPackage: 'Kernel.spur.newspeak-bwesterg.682.mcz'.
+	self loadPackage: 'Kernel.spur.newspeak-rmacnak.684.mcz'.
 
 	self loadNewspeakModules.
 	self loadResources.
@@ -93,7 +93,7 @@ boot
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 15:16'!
 cr
 	Transcript cr.
-	FileStream stdout cr.! !
+	FileStream stdout lf.! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 14:38'!
 initialize
@@ -108,15 +108,15 @@ loadChangeset: filename
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:12'!
 loadNewspeakModules
 	| runtime platform repoDir files |
-	self print: #aa.
-runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'.
-        self print: #a.
-	platform := runtime using: VMMirror new.
-        self print: #b.
-	BlackMarket platform: platform.
-        self print: #c.
-	
 	Transcript open.
+	self
+                report: 'Deserializing bootstrap runtime'
+                during: [runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'].
+        self
+                report: 'Instantiating bootstrap runtime'
+	        during: [platform := runtime using: VMMirror new].
+        BlackMarket platform: platform.
+        
 	repoDir := (FileDirectory default containingDirectory / 'newspeak').
 	files := repoDir fileNames select: [:ea | ea endsWith: '.ns3'].
 	files := files sortBy: [:a :b | a < b].
@@ -161,10 +161,10 @@ print: string
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'eliot 10/3/2014 09:25'!
 report: message during: block
 	| time |
-	self cr.
 	self print: message.
 	time := block timeToRun.
-	self print: '. Done in ', ((time / 10) ceiling / 100.0) printString, ' seconds.'! !
+	self print: '. Done in ', ((time / 10) ceiling / 100.0) printString, ' seconds.'.
+        self cr.! !
 
 
 NewspeakBootstrap initialize!
