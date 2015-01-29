@@ -44,7 +44,7 @@ boot
 	self loadChangeset: '26-BaseEnhancements.st'.
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'NewspeakCore-bwesterg.80.mcz'.
-	self loadPackage: 'Newsqueak-mixins-tessi.108.mcz'.
+	self loadPackage: 'Newsqueak-mixins-rmacnak.109.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.38.mcz'.
 	self loadPackage: 'Newspeak-ryan.257.mcz'.
 	self loadPackage: 'NOFBootstrap-eliot.35.mcz'.
@@ -59,10 +59,10 @@ boot
 	 that we need."
 	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
-	self loadPackage: 'NativeSession-eliot.99.mcz'.
+	self loadPackage: 'NativeSession-rmacnak.100.mcz'.
 	self loadPackage: 'NSCollections-ryan.55.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
-	self loadPackage: 'NsToolSet-bwesterg.49.mcz'.
+	self loadPackage: 'NsToolSet-gbracha.50.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
 	
 	self loadChangeset: '95-PostPatches.cs'.
@@ -108,14 +108,12 @@ loadChangeset: filename
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:12'!
 loadNewspeakModules
 	| runtime platform repoDir files |
-	self print: #aa.
-runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'.
-        self print: #a.
+	self print: 'Deserializing bootstrap runtime...'.
+        runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'.
+        self print: 'Instantiating bootstrap runtime...'.
 	platform := runtime using: VMMirror new.
-        self print: #b.
-	BlackMarket platform: platform.
-        self print: #c.
-	
+        BlackMarket platform: platform.
+        
 	Transcript open.
 	repoDir := (FileDirectory default containingDirectory / 'newspeak').
 	files := repoDir fileNames select: [:ea | ea endsWith: '.ns3'].
