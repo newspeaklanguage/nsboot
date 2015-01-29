@@ -93,7 +93,7 @@ boot
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 15:16'!
 cr
 	Transcript cr.
-	FileStream stdout cr.! !
+	FileStream stdout lf.! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 14:38'!
 initialize
@@ -108,13 +108,15 @@ loadChangeset: filename
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:12'!
 loadNewspeakModules
 	| runtime platform repoDir files |
-	self print: 'Deserializing bootstrap runtime...'.
-        runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'.
-        self print: 'Instantiating bootstrap runtime...'.
-	platform := runtime using: VMMirror new.
+	Transcript open.
+	self
+                report: 'Deserializing bootstrap runtime'
+                during: [runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'].
+        self
+                report: 'Instantiating bootstrap runtime'
+	        during: [platform := runtime using: VMMirror new].
         BlackMarket platform: platform.
         
-	Transcript open.
 	repoDir := (FileDirectory default containingDirectory / 'newspeak').
 	files := repoDir fileNames select: [:ea | ea endsWith: '.ns3'].
 	files := files sortBy: [:a :b | a < b].
@@ -159,10 +161,10 @@ print: string
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'eliot 10/3/2014 09:25'!
 report: message during: block
 	| time |
-	self cr.
 	self print: message.
 	time := block timeToRun.
-	self print: '. Done in ', ((time / 10) ceiling / 100.0) printString, ' seconds.'! !
+	self print: '. Done in ', ((time / 10) ceiling / 100.0) printString, ' seconds.'.
+        self cr.! !
 
 
 NewspeakBootstrap initialize!
