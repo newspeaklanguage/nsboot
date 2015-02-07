@@ -74,7 +74,7 @@ boot
 	self loadPackage: 'Files-eliot.119.mcz'.
 	self loadPackage: 'System.spur-tessi.473.mcz'.
 	Smalltalk recreateSpecialObjectsArray.
-	self loadPackage: 'Compiler.spur.newspeak-rmacnak.244.mcz'.
+	self loadPackage: 'Compiler.spur.newspeak-rmacnak.245.mcz'.
 	"EncoderForNewsqueakV4 is the alternate instruction set but isn't installed
 	 in CompiledMethod's class vars yet.  CompiledMethod will complain that
 	 methods with the alternate set's flag alreayd exist.  Squash te warning."
