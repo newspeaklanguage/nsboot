@@ -19,11 +19,11 @@ MCWorkingCopy allManagers do: [:ea | ea modified: false].
 "Forget about the path to the package cache used during the bootstrap"
 MCRepositoryGroup default removeRepository: MCCacheRepository default.MCCacheRepository instVarNamed: 'default' put: nil.
 
-BlackMarket resetEverything.
+NewspeakGlobalState resetEverything.
 NsToolSet releaseMemory: false.
 Smalltalk condenseChanges. "Must be after releaseMemory: for reasons beyond me"
 Smalltalk cleanUp.
-BlackMarket resetEverything.
+NewspeakGlobalState resetEverything.
 SystemOrganization removeEmptyCategories.
 
 Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
@@ -33,7 +33,7 @@ UIManager default: NativeUIManager new.
 NewsqueakDockingBar setup.
 SHTextStylerST80 setupForNewsqueak.
 
-[BlackMarket platform kernel takeOver] ifError: [Transcript show: 'takeOver failed'; cr].
+[NewspeakGlobalState platform kernel takeOver] ifError: [Transcript show: 'takeOver failed'; cr].
 NsToolSet releaseMemory: false.
 
 [|imageName|
@@ -44,7 +44,7 @@ NsToolSet releaseMemory: false.
 	Transcript clear.
 	Transcript show: 'Hello, Brave New World!!'.
 	Transcript cr.
-	OSProcess isWindows ifFalse: [BlackMarket ide IDEWindow open].
+	OSProcess isWindows ifFalse: [NewspeakGlobalState ide IDEWindow open].
 	].
 ] forkAt: 19. "Fork because we want to release the file handle for this file-in before we save."
 

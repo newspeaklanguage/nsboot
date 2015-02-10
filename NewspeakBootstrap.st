@@ -31,38 +31,38 @@ boot
 	self loadChangeset: '03-Other3.cs'.
 	self loadChangeset: '04-SetupPreferences.cs'.
 	self loadPackage: 'Tests-eliot.140.mcz'.
-	self loadPackage: 'NsMultilanguage-ryan.84.mcz'.
-	self loadPackage: 'NewsqueakBase-ryan.97.mcz'.
-	self loadPackage: 'NsSystem-rmacnak.66.mcz'.
+	self loadPackage: 'NsMultilanguage-rmacnak.85.mcz'.
+	self loadPackage: 'NewsqueakBase-rmacnak.98.mcz'.
+	self loadPackage: 'NsSystem-rmacnak.67.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
 	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
 	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.
-	self loadPackage: 'OSProcess-ryan.11.mcz'.
+	self loadPackage: 'OSProcess-rmacnak.12.mcz'.
 	self loadPackage: 'Shout-bwesterg.75.mcz'.
 	self loadChangeset: '20-PackagingCore.st'.
 	self loadPackage: 'NewspeakFacelift-ryan.8.mcz'.
 	self loadChangeset: '26-BaseEnhancements.st'.
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
-	self loadPackage: 'NewspeakCore-bwesterg.80.mcz'.
+	self loadPackage: 'NewspeakCore-rmacnak.81.mcz'.
 	self loadPackage: 'Newsqueak-mixins-rmacnak.109.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.39.mcz'.
-	self loadPackage: 'Newspeak-ryan.257.mcz'.
-	self loadPackage: 'NOFBootstrap-eliot.35.mcz'.
+	self loadPackage: 'Newspeak-rmacnak.258.mcz'.
+	self loadPackage: 'NOFBootstrap-rmacnak.36.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
 	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
-	self loadPackage: 'BrazilForMorphic-vassili.34.mcz'.
+	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
-	self loadPackage: 'ExternalProcess-rmacnak.30.mcz'.
+	self loadPackage: 'ExternalProcess-rmacnak.31.mcz'.
 	"Supress monticello load warnings for the Network package. 
 	 It has been maked dirty as a side-effect of changesets above.
 	 This particular version has the version of UUID class>>#String:
 	 that we need."
 	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
-	self loadPackage: 'NativeSession-rmacnak.102.mcz'.
+	self loadPackage: 'NativeSession-rmacnak.103.mcz'.
 	self loadPackage: 'NSCollections-ryan.55.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
-	self loadPackage: 'NsToolSet-gbracha.50.mcz'.
+	self loadPackage: 'NsToolSet-rmacnak.51.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
 	
 	self loadChangeset: '95-PostPatches.cs'.
@@ -72,7 +72,7 @@ boot
 			[:pat| pat match: wc package name]]) 
 				do: [:wc| wc modified: false].	
 	self loadPackage: 'Files-eliot.119.mcz'.
-	self loadPackage: 'System.spur-tessi.473.mcz'.
+	self loadPackage: 'System.spur-rmacnak.474.mcz'.
 	Smalltalk recreateSpecialObjectsArray.
 	self loadPackage: 'Compiler.spur.newspeak-rmacnak.245.mcz'.
 	"EncoderForNewsqueakV4 is the alternate instruction set but isn't installed
@@ -115,7 +115,7 @@ loadNewspeakModules
         self
                 report: 'Instantiating bootstrap runtime'
 	        during: [platform := runtime using: VMMirror new].
-        BlackMarket platform: platform.
+        NewspeakGlobalState platform: platform.
         
 	repoDir := (FileDirectory default containingDirectory / 'newspeak').
 	files := repoDir fileNames select: [:ea | ea endsWith: '.ns3'].
@@ -125,9 +125,9 @@ loadNewspeakModules
 			[ | klass |
 			klass := LanguageFileReader new compileFile: (repoDir fullNameFor: ea).
 			PackageInfo named: (klass basicCategory findTokens: '-') first.
-			BlackMarket namespace at: klass name put: klass]].
+			NewspeakGlobalState namespace at: klass name put: klass]].
 	
-	BlackMarket resetEverything.! !
+	NewspeakGlobalState resetEverything.! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:48'!
 loadPackage: filename
@@ -149,9 +149,9 @@ loadResources
 			form := PNGReadWriter formFromFileNamed: (repoDir fullNameFor: ea).
 			name := (ea allButLast: 4) asSymbol.
 			Smalltalk at: name put: form.
-			BlackMarket namespace at: name put: form]].
+			NewspeakGlobalState namespace at: name put: form]].
 	
-	BlackMarket resetEverything.! !
+	NewspeakGlobalState resetEverything.! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:58'!
 print: string
