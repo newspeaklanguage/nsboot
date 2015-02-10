@@ -20,7 +20,7 @@ MCWorkingCopy allManagers do: [:ea | ea modified: false].
 MCRepositoryGroup default removeRepository: MCCacheRepository default.MCCacheRepository instVarNamed: 'default' put: nil.
 
 BlackMarket resetEverything.
-NsToolSet releaseMemory: true.
+NsToolSet releaseMemory: false.
 Smalltalk condenseChanges. "Must be after releaseMemory: for reasons beyond me"
 Smalltalk cleanUp.
 BlackMarket resetEverything.
@@ -34,7 +34,7 @@ NewsqueakDockingBar setup.
 SHTextStylerST80 setupForNewsqueak.
 
 [BlackMarket platform kernel takeOver] ifError: [Transcript show: 'takeOver failed'; cr].
-NsToolSet releaseMemory: true.
+NsToolSet releaseMemory: false.
 
 [|imageName|
  imageName := 'nsboot-',Date today yyyymmdd.
