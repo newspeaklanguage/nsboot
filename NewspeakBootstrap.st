@@ -31,7 +31,7 @@ boot
 	self loadChangeset: '03-Other3.cs'.
 	self loadChangeset: '04-SetupPreferences.cs'.
 	self loadPackage: 'Tests-eliot.140.mcz'.
-	self loadPackage: 'NsMultilanguage-rmacnak.85.mcz'.
+	self loadPackage: 'NsMultilanguage-rmacnak.86.mcz'.
 	self loadPackage: 'NewsqueakBase-rmacnak.98.mcz'.
 	self loadPackage: 'NsSystem-rmacnak.67.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
