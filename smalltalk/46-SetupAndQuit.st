@@ -1,3 +1,4 @@
+
 Class addSubclass: ImplementationBase class.
 "So SystemNavigation/SystemScope allBehaviorsDo: can find it and subclasses.  Not sure why this is needed in Squeak 4.2 but not 3.9, possible a result of a difference in how the versions of Monticello load a class with nil superclass.  I would prefer to include this in ImplementationBase class>>initialize, but it will fail because ImplementationBase class is not a subclass of Class at the time when it is run."
 
@@ -21,7 +22,6 @@ MCRepositoryGroup default removeRepository: MCCacheRepository default.MCCacheRe
 
 NewspeakGlobalState resetEverything.
 NsToolSet releaseMemory: false.
-Smalltalk condenseChanges. "Must be after releaseMemory: for reasons beyond me"
 Smalltalk cleanUp.
 NewspeakGlobalState resetEverything.
 SystemOrganization removeEmptyCategories.

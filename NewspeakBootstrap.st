@@ -83,6 +83,7 @@ boot
 		do: [:ex| ex resume].
 	self loadPackage: 'Kernel.spur.newspeak-rmacnak.685.mcz'.
 
+        Smalltalk condenseChanges.
 	self loadNewspeakModules.
 	self loadResources.
 
