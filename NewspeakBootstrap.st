@@ -31,7 +31,7 @@ boot
 	self loadChangeset: '03-Other3.cs'.
 	self loadChangeset: '04-SetupPreferences.cs'.
 	self loadPackage: 'Tests-eliot.140.mcz'.
-	self loadPackage: 'NsMultilanguage-rmacnak.86.mcz'.
+	self loadPackage: 'NsMultilanguage-rmacnak.89.mcz'.
 	self loadPackage: 'NewsqueakBase-rmacnak.98.mcz'.
 	self loadPackage: 'NsSystem-rmacnak.67.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
@@ -122,10 +122,12 @@ loadNewspeakModules
 	files := files sortBy: [:a :b | a < b].
 	files do: [:ea | 
 		self report: 'Compiling module ', ea during:
-			[ | klass |
-			klass := LanguageFileReader new compileFile: (repoDir fullNameFor: ea).
-			PackageInfo named: (klass basicCategory findTokens: '-') first.
-			NewspeakGlobalState namespace at: klass name put: klass]].
+			[ | fn src builder mixinMirror klass |
+                        fn := repoDir fullNameFor: ea.
+                        src := (CrLfFileStream readOnlyFileNamed: fn) contentsOfEntireFile.
+                        builder := platform mirrors ClassDeclarationBuilder fromUnitSource: src.
+                        klass := builder install reflectee apply: platform kernel Object withName: builder simpleName.
+                        NewspeakGlobalState namespace at: klass name put: klass]].
 	
 	NewspeakGlobalState resetEverything.! !
 
@@ -148,7 +150,6 @@ loadResources
 			[ | name form |
 			form := PNGReadWriter formFromFileNamed: (repoDir fullNameFor: ea).
 			name := (ea allButLast: 4) asSymbol.
-			Smalltalk at: name put: form.
 			NewspeakGlobalState namespace at: name put: form]].
 	
 	NewspeakGlobalState resetEverything.! !
