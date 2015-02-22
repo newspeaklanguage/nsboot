@@ -43,23 +43,23 @@ boot
 	self loadPackage: 'NewspeakFacelift-ryan.8.mcz'.
 	self loadChangeset: '26-BaseEnhancements.st'.
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
-	self loadPackage: 'NewspeakCore-rmacnak.81.mcz'.
+	self loadPackage: 'NewspeakCore-rmacnak.82.mcz'.
 	self loadPackage: 'Newsqueak-mixins-rmacnak.109.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.39.mcz'.
-	self loadPackage: 'Newspeak-rmacnak.258.mcz'.
+	self loadPackage: 'Newspeak-rmacnak.259.mcz'.
 	self loadPackage: 'NOFBootstrap-rmacnak.36.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
 	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
 	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
-	self loadPackage: 'ExternalProcess-rmacnak.31.mcz'.
+	self loadPackage: 'ExternalProcess-rmacnak.32.mcz'.
 	"Supress monticello load warnings for the Network package. 
 	 It has been maked dirty as a side-effect of changesets above.
 	 This particular version has the version of UUID class>>#String:
 	 that we need."
 	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
-	self loadPackage: 'NativeSession-rmacnak.104.mcz'.
+	self loadPackage: 'NativeSession-rmacnak.105.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
 	self loadPackage: 'NsToolSet-rmacnak.51.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
