@@ -60,7 +60,6 @@ boot
 	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
 	self loadPackage: 'NativeSession-rmacnak.104.mcz'.
-	self loadPackage: 'NSCollections-ryan.55.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
 	self loadPackage: 'NsToolSet-rmacnak.51.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
