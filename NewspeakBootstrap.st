@@ -80,7 +80,7 @@ boot
 	[CompiledMethod installSecondaryBytecodeSet: EncoderForNewsqueakV4]
 		on: Warning
 		do: [:ex| ex resume].
-	self loadPackage: 'Kernel.spur.newspeak-rmacnak.685.mcz'.
+	self loadPackage: 'Kernel.spur.newspeak-rmacnak.686.mcz'.
 
         Smalltalk condenseChanges.
 	self loadNewspeakModules.
