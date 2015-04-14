@@ -33,7 +33,7 @@ boot
 	self loadPackage: 'Tests-eliot.140.mcz'.
 	self loadPackage: 'NsMultilanguage-rmacnak.89.mcz'.
 	self loadPackage: 'NewsqueakBase-rmacnak.98.mcz'.
-	self loadPackage: 'NsSystem-rmacnak.67.mcz'.
+	self loadPackage: 'NsSystem-rmacnak.68.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
 	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
 	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.
