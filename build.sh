@@ -10,19 +10,22 @@ HEADLESS=-headless
 USAGE="usage: `basename $0` -[h?] [-v vm] [-p path] [-u]"
 NSVM=
 NOZIP=
+TEST=
 
-while getopts 'v:p:uh?' opt "$@"; do
+while getopts 'v:p:uth?' opt "$@"; do
 	case "$opt" in
 	v)		NSVM="$OPTARG";;
 	h)		HEADLESS="";;
 	p)		IMAGEPATH="$OPTARG";;
 	u)		NOZIP="1";;
+	t)		TEST="1";;
 	\?|*)	echo $USAGE
 			echo '	boot newspeak'
 			echo '	-h: run headful, not headless'
 			echo '	-v vm: use the supplied VM instead of the default'
 			echo '	-p path: where you want the generated image to be placed (default: $IMAGEPATH)'
 			echo '	-u: unpacked - do not zip (package) the image. Just generate the .image and .changes file.'
+			echo '	-t: run tests'
 			echo '	-?: display this help'
 			test "$opt" = "\?" && exit 0;
 			exit 1;;
@@ -41,6 +44,10 @@ cp -p Squeak4.3/Squeak4.3.1-spur.image $IMAGE
 cp -p Squeak4.3/Squeak4.3.1-spur.changes $CHANGES
 
 "$NSVM" $HEADLESS $IMAGE NewspeakBootstrap.st
+
+if [ ! -z "$TEST" ]; then
+    "$NSVM" $HEADLESS $IMAGE NewspeakTests.st
+fi
 
 if [ -z "$NOZIP" ]; then
 	hg --cwd ../newspeak tip > newspeaktip

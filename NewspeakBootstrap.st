@@ -164,7 +164,7 @@ report: message during: block
 	| time |
 	self print: message.
 	time := block timeToRun.
-	self print: '. Done in ', ((time / 10) ceiling / 100.0) printString, ' seconds.'.
+	self print: '. Done in ', time printString, ' ms.'.
         self cr.! !
 
 
