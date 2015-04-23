@@ -37,7 +37,7 @@ boot
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
 	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
 	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.
-	self loadPackage: 'OSProcess-rmacnak.12.mcz'.
+	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
 	self loadPackage: 'Shout-bwesterg.75.mcz'.
 	self loadChangeset: '20-PackagingCore.st'.
 	self loadPackage: 'NewspeakFacelift-ryan.8.mcz'.
