@@ -45,7 +45,7 @@ boot
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'NewspeakCore-rmacnak.82.mcz'.
 	self loadPackage: 'Newsqueak-mixins-rmacnak.109.mcz'.
-	self loadPackage: 'NsFFI-rmacnak.39.mcz'.
+	self loadPackage: 'NsFFI-rmacnak.40.mcz'.
 	self loadPackage: 'Newspeak-rmacnak.259.mcz'.
 	self loadPackage: 'NOFBootstrap-rmacnak.36.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
