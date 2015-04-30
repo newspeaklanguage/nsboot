@@ -1,4 +1,4 @@
-'From nsboot-2015-04-26 of 26 April 2015 [latest update: #11860] on 29 April 2015 at 9:21:01 pm'!
+'From nsboot-2015-04-26 of 26 April 2015 [latest update: #11860] on 29 April 2015 at 9:54:48 pm'!
 Object subclass: #NewspeakBootstrap
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -100,12 +100,15 @@ exit: status
 	<primitive: 113>
 	self primitiveFailed! !
 
-!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/29/2015 21:17'!
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/29/2015 21:54'!
 initialize
 	WorldState addDeferredUIMessage:
-		[[self boot] ifError:
-			[:errorDescription |
-			self print: errorDescription; cr.
+		[[self boot] on: Error do:
+			[:error |
+			"Stupid Squeak error that does nothing when unhandled."
+			error class = InvalidDirectoryError ifTrue: [error pass].
+			
+			self print: (String streamContents: [:stm | error signalerContext errorReportOn: stm]); cr.
 			self exit: 1]].! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:50'!
