@@ -1,4 +1,4 @@
-'From nsboot-2014-03-17 of 17 March 2014 [latest update: #11860] on 20 March 2014 at 8:30:20 pm'!
+'From nsboot-2015-04-26 of 26 April 2015 [latest update: #11860] on 29 April 2015 at 8:26:30 pm'!
 Object subclass: #NewspeakBootstrap
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -95,9 +95,13 @@ cr
 	Transcript cr.
 	FileStream stdout lf.! !
 
-!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 14:38'!
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/29/2015 20:24'!
 initialize
-	[WorldState addDeferredUIMessage: [self boot]] forkAt: 20 named: 'Bootstrapping'! !
+	WorldState addDeferredUIMessage:
+		[[self boot] ifError:
+			[:errorDescription |
+			self print: errorDescription; cr.
+			Smalltalk quitPrimitive: 1]].! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:50'!
 loadChangeset: filename
