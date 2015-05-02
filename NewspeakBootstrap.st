@@ -47,7 +47,7 @@ boot
 	self loadPackage: 'Newsqueak-mixins-rmacnak.110.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.40.mcz'.
 	self loadPackage: 'Newspeak-rmacnak.259.mcz'.
-	self loadPackage: 'NOFBootstrap-rmacnak.36.mcz'.
+	self loadPackage: 'NOFBootstrap-rmacnak.37.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
 	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
 	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
