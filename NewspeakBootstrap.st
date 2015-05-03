@@ -44,7 +44,7 @@ boot
 	self loadChangeset: '26-BaseEnhancements.st'.
 	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
 	self loadPackage: 'NewspeakCore-rmacnak.82.mcz'.
-	self loadPackage: 'Newsqueak-mixins-rmacnak.110.mcz'.
+	self loadPackage: 'Newsqueak-mixins-rmacnak.111.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.40.mcz'.
 	self loadPackage: 'Newspeak-rmacnak.259.mcz'.
 	self loadPackage: 'NOFBootstrap-rmacnak.37.mcz'.
@@ -80,7 +80,7 @@ boot
 	[CompiledMethod installSecondaryBytecodeSet: EncoderForNewsqueakV4]
 		on: Warning
 		do: [:ex| ex resume].
-	self loadPackage: 'Kernel.spur.newspeak-rmacnak.686.mcz'.
+	self loadPackage: 'Kernel.spur.newspeak-rmacnak.687.mcz'.
 
         Smalltalk condenseChanges.
 	self loadNewspeakModules.
