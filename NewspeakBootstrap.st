@@ -31,7 +31,7 @@ boot
 	self loadChangeset: '03-Other3.cs'.
 	self loadChangeset: '04-SetupPreferences.cs'.
 	self loadPackage: 'Tests-eliot.140.mcz'.
-	self loadPackage: 'NsMultilanguage-rmacnak.89.mcz'.
+	self loadPackage: 'NsMultilanguage-rmacnak.90.mcz'.
 	self loadPackage: 'NewsqueakBase-rmacnak.98.mcz'.
 	self loadPackage: 'NsSystem-rmacnak.68.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
@@ -61,7 +61,7 @@ boot
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
 	self loadPackage: 'NativeSession-rmacnak.105.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
-	self loadPackage: 'NsToolSet-rmacnak.51.mcz'.
+	self loadPackage: 'NsToolSet-rmacnak.52.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
 	
 	self loadChangeset: '95-PostPatches.cs'.
