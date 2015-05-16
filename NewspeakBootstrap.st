@@ -32,7 +32,7 @@ boot
 	self loadChangeset: '04-SetupPreferences.cs'.
 	self loadPackage: 'Tests-eliot.140.mcz'.
 	self loadPackage: 'NsMultilanguage-rmacnak.90.mcz'.
-	self loadPackage: 'NewsqueakBase-rmacnak.98.mcz'.
+	self loadPackage: 'NewsqueakBase-rmacnak.99.mcz'.
 	self loadPackage: 'NsSystem-rmacnak.68.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
 	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
@@ -47,7 +47,7 @@ boot
 	self loadPackage: 'Newsqueak-mixins-rmacnak.111.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.40.mcz'.
 	self loadPackage: 'Newspeak-rmacnak.259.mcz'.
-	self loadPackage: 'NOFBootstrap-rmacnak.37.mcz'.
+	self loadPackage: 'VictoryFuel-rmacnak.1.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
 	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
 	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
@@ -123,7 +123,11 @@ loadNewspeakModules
 	Transcript open.
 	self
                 report: 'Deserializing bootstrap runtime'
-                during: [runtime := NewspeakObjectFormatDeserializer appFrom: 'BootstrapRuntimeForSqueak.nof'].
+                during:
+                        [FileStream oldFileNamed: 'BootstrapRuntimeForSqueak.vfuel' do: [:stream |
+                        | deserializer |
+                        deserializer := VFDeserializer new over: stream binary withGlobals: Smalltalk globals.
+                        runtime := deserializer deserialize]].
         self
                 report: 'Instantiating bootstrap runtime'
 	        during: [platform := runtime using: VMMirror new].
