@@ -43,10 +43,10 @@ fi
 cp -p Squeak4.3/Squeak4.3.1-spur.image $IMAGE
 cp -p Squeak4.3/Squeak4.3.1-spur.changes $CHANGES
 
-"$NSVM" $HEADLESS $IMAGE NewspeakBootstrap.st
+"$NSVM" $HEADLESS $COG_FLAGS $IMAGE NewspeakBootstrap.st
 
 if [ ! -z "$TEST" ]; then
-    "$NSVM" $HEADLESS $IMAGE NewspeakTests.st
+    "$NSVM" $HEADLESS $COG_FLAGS $IMAGE NewspeakTests.st
 fi
 
 if [ -z "$NOZIP" ]; then
