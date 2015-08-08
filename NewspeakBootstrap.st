@@ -31,23 +31,17 @@ boot
 	self loadChangeset: '03-Other3.cs'.
 	self loadChangeset: '04-SetupPreferences.cs'.
 	self loadPackage: 'Tests-eliot.140.mcz'.
-	self loadPackage: 'NsMultilanguage-rmacnak.90.mcz'.
-	self loadPackage: 'NewsqueakBase-rmacnak.99.mcz'.
-	self loadPackage: 'NsSystem-rmacnak.68.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
 	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
 	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.
 	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
 	self loadPackage: 'Shout-bwesterg.75.mcz'.
 	self loadChangeset: '20-PackagingCore.st'.
-	self loadPackage: 'NewspeakFacelift-ryan.8.mcz'.
 	self loadChangeset: '26-BaseEnhancements.st'.
-	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
-	self loadPackage: 'NewspeakCore-rmacnak.82.mcz'.
-	self loadPackage: 'Newsqueak-mixins-rmacnak.111.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.40.mcz'.
-	self loadPackage: 'Newspeak-rmacnak.259.mcz'.
-	self loadPackage: 'VictoryFuel-rmacnak.3.mcz'.
+	self loadPackage: 'Newspeak-rmacnak.260.mcz'.
+	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
+        self loadPackage: 'VictoryFuel-rmacnak.3.mcz'.
 	self loadChangeset: '40-NewspeakBytecode.cs'.
 	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
 	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
@@ -61,7 +55,6 @@ boot
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
 	self loadPackage: 'NativeSession-rmacnak.105.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
-	self loadPackage: 'NsToolSet-rmacnak.52.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
 	
 	self loadChangeset: '95-PostPatches.cs'.
