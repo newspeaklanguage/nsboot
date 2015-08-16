@@ -29,7 +29,7 @@ boot
 	self setupPreferences.
 
 	"Sadly there are loading order dependencies here."
-	self loadPackage: 'Newspeak-rmacnak.272.mcz'.
+	self loadPackage: 'Newspeak-rmacnak.273.mcz'.
 	self loadChangeset: '97-Vassilis-icons.cs'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
 	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
@@ -78,7 +78,7 @@ boot
 	SystemOrganization removeEmptyCategories.
 	Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
 	NativeSession start.
-	"UIManager default: NativeUIManager new."
+	UIManager default: NativeUIManager new.
 	NewsqueakDockingBar setup.
 	SHTextStylerST80 setupForNewsqueak.
 	
