@@ -1,4 +1,4 @@
-'From nsboot-2015-04-26 of 26 April 2015 [latest update: #11860] on 29 April 2015 at 9:54:48 pm'!
+'From nsboot-2015-08-15 of 15 August 2015 [latest update: #15113] on 15 August 2015 at 2:37:23 pm'!
 Object subclass: #NewspeakBootstrap
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -10,78 +10,81 @@ Object subclass: #NewspeakBootstrap
 NewspeakBootstrap class
 	instanceVariableNames: ''!
 
-!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:30'!
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 8/15/2015 14:32'!
 boot
-	"Force a save to avoid dialog about incompatibility of JIT-saved images with pre-JIT VMs."
-	Smalltalk snapshot: true andQuit: false embedded: false.
-
 	Utilities setAuthorInitials: 'bootstrapping'.
+
 	"Ensure that preempting a process puts it to the head of its run queue,
 	 instead of Blue Book Behavior."
 	Smalltalk vmParameterAt: 48 put: ((Smalltalk vmParameterAt: 48) bitOr: 2r100).
+
 	"This first change helps (filehandlelimits) supress issues with running 
 	 out of file-handles.  This can happen if your limit is	 low (1024) and 
 	 Monticello is examing overrides on packages, where it will make a 
 	 copy of the source file streams for each method."
 	self loadChangeset: 'filehandlelimits.1.cs'.
-	self loadChangeset: '01-LimitedUnload.cs'.
-	self loadChangeset: '02-LimitedUnload.cs'.
-	self loadChangeset: '03-Other.cs'.
-	self loadChangeset: '03-Other2.cs'.
-	self loadChangeset: '03-Other3.cs'.
-	self loadChangeset: '04-SetupPreferences.cs'.
-	self loadPackage: 'Tests-eliot.140.mcz'.
-	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
-	self loadChangeset: '13-RecreateSpecialObjectsArray.st'.
-	self loadPackage: 'FFI-Kernel-ryan.9.mcz'.
-	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
-	self loadPackage: 'Shout-bwesterg.75.mcz'.
-	self loadChangeset: '20-PackagingCore.st'.
-	self loadChangeset: '26-BaseEnhancements.st'.
-	self loadPackage: 'NsFFI-rmacnak.40.mcz'.
-	self loadPackage: 'Newspeak-rmacnak.260.mcz'.
-	self loadChangeset: '27-SHTextStylerST80 setupForNewsqueak.st'.
-        self loadPackage: 'VictoryFuel-rmacnak.3.mcz'.
-	self loadChangeset: '40-NewspeakBytecode.cs'.
-	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
-	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
+
+	self report: 'Removing packages' during: [self shrink].
+
+	self setupPreferences.
+
+	"Sadly there are loading order dependencies here."
+	self loadPackage: 'Newspeak-rmacnak.271.mcz'.
+	self loadChangeset: '97-Vassilis-icons.cs'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
+	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
 	self loadPackage: 'ExternalProcess-rmacnak.32.mcz'.
-	"Supress monticello load warnings for the Network package. 
-	 It has been maked dirty as a side-effect of changesets above.
-	 This particular version has the version of UUID class>>#String:
-	 that we need."
-	[self loadPackage: 'Network-bwesterg.141.mcz'] on: Warning do: [:ex | ex resume].
-	self loadPackage: 'Hopscotch-tessi.276.mcz'.
-	self loadPackage: 'NativeSession-rmacnak.105.mcz'.
+	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
+	self loadPackage: 'NsFFI-rmacnak.40.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
+	self loadPackage: 'NativeSession-rmacnak.105.mcz'.
+	self loadPackage: 'Shout-bwesterg.75.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
-	
-	self loadChangeset: '95-PostPatches.cs'.
-	
-	(MCWorkingCopy allManagers select:
-		[:wc | #('Compiler*' 'Kernel*' 'System*' 'Files*') anySatisfy: 
-			[:pat| pat match: wc package name]]) 
-				do: [:wc| wc modified: false].	
-	self loadPackage: 'Files-eliot.119.mcz'.
-	self loadPackage: 'System.spur-rmacnak.474.mcz'.
+	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
+	self loadPackage: 'Hopscotch-tessi.276.mcz'.
+	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
+	self loadPackage: 'VictoryFuel-rmacnak.3.mcz'.
+
+	CompiledMethod installSecondaryBytecodeSet: EncoderForNewsqueakV4.
+
+	"Allows Newspeak to subclass Smalltalk."
+	Object addSelectorSilently: #'initializer`new' withMethod: CompiledMethod toReturnSelf.
+
+	"For Alien"
 	Smalltalk recreateSpecialObjectsArray.
-	self loadPackage: 'Compiler.spur.newspeak-rmacnak.246.mcz'.
-	"EncoderForNewsqueakV4 is the alternate instruction set but isn't installed
-	 in CompiledMethod's class vars yet.  CompiledMethod will complain that
-	 methods with the alternate set's flag alreayd exist.  Squash te warning."
-	[CompiledMethod installSecondaryBytecodeSet: EncoderForNewsqueakV4]
-		on: Warning
-		do: [:ex| ex resume].
-	self loadPackage: 'Kernel.spur.newspeak-rmacnak.687.mcz'.
 
-        Smalltalk condenseChanges.
+	"The fun part."
 	self loadNewspeakModules.
-	self loadResources.
+	self loadResources. 
 
-	self loadChangeset: '46-SetupAndQuit.st'.
+	"So SystemNavigation/SystemScope allBehaviorsDo: can find it and subclasses.  Not sure why this is needed in Squeak 4.2 but not 3.9, possible a result of a difference in how the versions of Monticello load a class with nil superclass.  I would prefer to include this in ImplementationBase class>>initialize, but it will fail because ImplementationBase class is not a subclass of Class at the time when it is run."
+	Class addSubclass: ImplementationBase class.
+
+	MCWorkingCopy allManagers do: [:ea | ea modified: false].
+
+	"Forget about the path to the package cache used during the bootstrap"
+	MCRepositoryGroup default removeRepository: MCCacheRepository default.
+	MCCacheRepository instVarNamed: 'default' put: nil.
 	
-	Utilities setAuthorInitials: ''.! !
+	Smalltalk cleanUp.
+	SystemOrganization removeEmptyCategories.
+	Smalltalk addToStartUpList: NsFFISessionManager after: Delay.
+	NativeSession start.
+	"UIManager default: NativeUIManager new."
+	NewsqueakDockingBar setup.
+	SHTextStylerST80 setupForNewsqueak.
+	
+	NewspeakGlobalState resetEverything.
+	[NewspeakGlobalState platform kernel takeOver]
+		ifError: [Transcript show: 'takeOver failed'; cr].
+
+	SystemVersion newVersion: 'nsboot-',Date today yyyymmdd.
+	Utilities setAuthorInitials: ''.
+	WorldState addDeferredUIMessage: 
+		[Smalltalk snapshot: true andQuit: true.
+		 Transcript clear.
+		 Transcript show: 'Hello, Brave New World!!'; cr.
+		 OSProcess isWindows ifFalse: [NewspeakGlobalState ide IDEWindow open]].! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'Unknown 8/7/2012 15:16'!
 cr
@@ -95,14 +98,16 @@ exit: status
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/29/2015 21:54'!
 initialize
-	WorldState addDeferredUIMessage:
+        
+	WorldState addDeferredUIMessage: [self boot].
+"	WorldState addDeferredUIMessage:
 		[[self boot] on: Error do:
 			[:error |
-			"Stupid Squeak error that does nothing when unhandled."
+			""Stupid Squeak error that does nothing when unhandled.""
 			error class = InvalidDirectoryError ifTrue: [error pass].
 			
 			self print: (String streamContents: [:stm | error signalerContext errorReportOn: stm]); cr.
-			self exit: 1]].! !
+			self exit: 1]]."! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:50'!
 loadChangeset: filename
@@ -113,11 +118,12 @@ loadChangeset: filename
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:12'!
 loadNewspeakModules
 	| runtime platform repoDir files |
+        TheWorldMainDockingBar instance closeAllWindows.
 	Transcript open.
 	self
                 report: 'Deserializing bootstrap runtime'
                 during:
-                        [FileStream oldFileNamed: 'BootstrapRuntimeForSqueak.vfuel' do: [:stream |
+                        [StandardFileStream oldFileNamed: 'BootstrapRuntimeForSqueak.vfuel' do: [:stream |
                         | deserializer |
                         deserializer := VFDeserializer new over: stream binary withGlobals: Smalltalk globals.
                         runtime := deserializer deserialize]].
@@ -175,6 +181,54 @@ report: message during: block
 	time := block timeToRun.
 	self print: '. Done in ', time printString, ' ms.'.
         self cr.! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 8/15/2015 14:26'!
+setupPreferences	
+	Preferences setPreference: #swapMouseButtons toValue: true.
+	Preferences setPreference: #extraDebuggerButtons toValue: true.
+	Preferences setPreference: #diffsWithPrettyPrint toValue: true.
+	Preferences setPreference: #annotationPanes toValue: true.
+	Preferences setPreference: #multipleTextUndo toValue: true.
+	Preferences setPreference: #diffsWithPrettyPrint toValue: false.
+	Preferences setPreference: #syntaxHighlightingAsYouTypeAnsiAssignment toValue: true.
+	Preferences setPreference: #fullScreenLeavesDeskMargins toValue: false.
+	Preferences setPreference: #scrollBarsWithoutMenuButton toValue: true.
+	Preferences setPreference: #scrollBarsNarrow toValue: false.
+	Preferences enable: #alwaysShowVScrollbar.
+
+	ScrollBar scrollBarsWithoutArrowButtons: false.
+	
+	Morph indicateKeyboardFocus: false.
+	
+	Preferences 
+		addBooleanPreference: #experimental 
+		category: 'Newspeak' 
+		default: false 
+		balloonHelp: 'Help?'.
+
+	Preferences 
+		addBooleanPreference: #allowDebugger 
+		category: 'Newspeak' 
+		default: true 
+		balloonHelp: 'Help?'.
+		
+	Preferences 
+		addBooleanPreference: #inPackagedImage 
+		category: 'Newspeak' 
+		default: false
+		balloonHelp: 'Help?'.
+
+	Scanner prefAllowUnderscoreSelectors: true.! !
+
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 8/15/2015 14:28'!
+shrink
+	"This is 'Smalltalk shrink' with broken parts removed."
+	Smalltalk zapMVCprojects.
+	Flaps disableGlobalFlaps: false.
+	Smalltalk unloadReloadablePackages.
+	Smalltalk cleanUp: true.
+	SystemOrganization removeSystemCategory: 'UserObjects'.
+	Smalltalk garbageCollect.! !
 
 
 NewspeakBootstrap initialize!

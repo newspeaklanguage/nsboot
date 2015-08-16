@@ -3,6 +3,7 @@ package-cache
 *.image
 *.changes
 *.changes.old
+*.sources
 *.log
 *.zip
 *.orig
