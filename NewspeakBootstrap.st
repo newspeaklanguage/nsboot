@@ -44,6 +44,14 @@ boot
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
 	self loadPackage: 'INIFile-Core-ryan.2.mcz'.
 	self loadPackage: 'VictoryFuel-rmacnak.3.mcz'.
+	self loadChangeset: '../postpatches/Collections-eem.426.1.cs'.
+	self loadChangeset: '../postpatches/enclose-newspeak-comments.2.cs'.
+	self loadChangeset: '../postpatches/Exceptions-bwesterg.33.1.cs'.
+	self loadChangeset: '../postpatches/ExternalUnixOSProcess-update.st'.
+	self loadChangeset: '../postpatches/Files-eem.101.1.cs'.
+	self loadChangeset: '../postpatches/Morphic-Unknown.524.1.cs'.
+	self loadChangeset: '../postpatches/System-eem.424.1.cs'.
+	self loadChangeset: '../postpatches/Tools-eem.300.3.cs'.
 
 	CompiledMethod installSecondaryBytecodeSet: EncoderForNewsqueakV4.
 
