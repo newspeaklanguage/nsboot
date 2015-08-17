@@ -208,6 +208,8 @@ setupPreferences
 	
 	Morph indicateKeyboardFocus: false.
 	
+	TextEditor autoEnclose: false.
+	
 	Preferences 
 		addBooleanPreference: #experimental 
 		category: 'Newspeak' 
