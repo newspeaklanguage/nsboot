@@ -57,12 +57,10 @@ if [ -z "$NOZIP" ]; then
 	zip $ZIP $IMAGE $CHANGES newspeaktip nsboottip
 	mkdir -p $IMAGEPATH || true
 	mv $ZIP $IMAGEPATH
-	rm $IMAGE $CHANGES $CHANGES.old newspeaktip nsboottip
 else
 	mkdir -p $IMAGEPATH || true
 	cp -f $IMAGE   "$IMAGEPATH/$IMAGE"
 	cp -f $CHANGES "$IMAGEPATH/$CHANGES"
-	rm $IMAGE $CHANGES $CHANGES.old
 	echo "\n"
         echo "`pwd`/$IMAGEPATH/$IMAGE"
 fi

@@ -107,15 +107,14 @@ exit: status
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/29/2015 21:54'!
 initialize
         
-	WorldState addDeferredUIMessage: [self boot].
-"	WorldState addDeferredUIMessage:
+	WorldState addDeferredUIMessage:
 		[[self boot] on: Error do:
 			[:error |
-			""Stupid Squeak error that does nothing when unhandled.""
+			"Stupid Squeak error that does nothing when unhandled."
 			error class = InvalidDirectoryError ifTrue: [error pass].
 			
 			self print: (String streamContents: [:stm | error signalerContext errorReportOn: stm]); cr.
-			self exit: 1]]."! !
+			self exit: 1]].! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:50'!
 loadChangeset: filename
