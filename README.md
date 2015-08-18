@@ -9,5 +9,5 @@ cd Newspeak
 hg clone https://bitbucket.org/newspeaklanguage/newspeak
 hg clone https://bitbucket.org/newspeaklanguage/nsboot
 cd nsboot
-./build.sh
+./build32.sh
 ```
