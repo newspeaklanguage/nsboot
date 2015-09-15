@@ -1,3 +1,4 @@
+
 'From nsboot-2015-08-15 of 15 August 2015 [latest update: #15113] on 15 August 2015 at 2:37:23 pm'!
 Object subclass: #NewspeakBootstrap
 	instanceVariableNames: ''
@@ -35,7 +36,7 @@ boot
 	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
 	self loadPackage: 'ExternalProcess-rmacnak.32.mcz'.
 	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
-	self loadPackage: 'NsFFI-rmacnak.40.mcz'.
+	self loadPackage: 'NsFFI-rmacnak.41.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
 	self loadPackage: 'NativeSession-rmacnak.105.mcz'.
 	self loadPackage: 'Shout-bwesterg.75.mcz'.
