@@ -36,7 +36,7 @@ boot
 	self loadPackage: 'BrazilForMorphic-rmacnak.35.mcz'.
 	self loadPackage: 'ExternalProcess-rmacnak.32.mcz'.
 	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
-	self loadPackage: 'NsFFI-rmacnak.41.mcz'.
+	self loadPackage: 'NsFFI-rmacnak.42.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
 	self loadPackage: 'NativeSession-rmacnak.105.mcz'.
 	self loadPackage: 'Shout-bwesterg.75.mcz'.
