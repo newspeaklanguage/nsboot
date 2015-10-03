@@ -49,6 +49,7 @@ boot
 	self loadChangeset: '../postpatches/enclose-newspeak-comments.2.cs'.
 	self loadChangeset: '../postpatches/Exceptions-bwesterg.33.1.cs'.
 	self loadChangeset: '../postpatches/ExternalUnixOSProcess-update.st'.
+	self loadChangeset: '../postpatches/Initials.1.cs'.
 	self loadChangeset: '../postpatches/Files-eem.101.1.cs'.
 	self loadChangeset: '../postpatches/Morphic-Unknown.524.1.cs'.
 	self loadChangeset: '../postpatches/System-eem.424.1.cs'.
