@@ -38,7 +38,7 @@ boot
 	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.42.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
-	self loadPackage: 'NativeSession-rmacnak.105.mcz'.
+	self loadPackage: 'NativeSession-rmacnak.106.mcz'.
 	self loadPackage: 'Shout-bwesterg.75.mcz'.
 	self loadPackage: 'Win32API-ryan.46.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
