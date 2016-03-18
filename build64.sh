@@ -35,7 +35,8 @@ done
 if [ -z "$NSVM" ]; then
 	case `uname -s` in
 	Linux) NSVM=/usr/lib/nsvm/nsvm;;
-	Darwin) NSVM="/Applications/Newspeak Spur Virtual Machine.app/Contents/MacOS/Newspeak Virtual Machine";;
+	Darwin) NSVM="/Applications/Newspeak Spur Virtual Machine.app/Contents/MacOS/Newspeak Virtual Machine"
+            HEADLESS="";;
 	*) NSVM=../nsvm/nsvm;;
 	esac
 fi
