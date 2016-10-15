@@ -141,7 +141,7 @@ loadNewspeakModules
         NewspeakGlobalState platform: platform.
         
 	repoDir := (FileDirectory default containingDirectory / 'newspeak').
-	files := repoDir fileNames select: [:ea | ea endsWith: '.ns3'].
+	files := repoDir fileNames select: [:ea | ea endsWith: '.ns'].
 	files := files sortBy: [:a :b | a < b].
 	files do: [:ea | 
 		self report: 'Compiling module ', ea during:
