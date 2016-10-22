@@ -149,7 +149,7 @@ loadNewspeakModules
                         fn := repoDir fullNameFor: ea.
                         src := (CrLfFileStream readOnlyFileNamed: fn) contentsOfEntireFile.
                         builder := platform mirrors ClassDeclarationBuilder fromUnitSource: src.
-                        klass := builder install reflectee apply: platform kernel Object withName: builder simpleName.
+                        klass := builder install reflectee apply: platform kernel Object withName: builder name.
                         NewspeakGlobalState namespace at: klass name put: klass]].
 	
 	NewspeakGlobalState resetEverything.! !
