@@ -35,15 +35,14 @@ done
 if [ -z "$NSVM" ]; then
 	case `uname -s` in
 	Linux) NSVM=/usr/lib/nsvm/nsvm;;
-	Darwin) NSVM="/Applications/Newspeak Spur Virtual Machine.app/Contents/MacOS/Newspeak Virtual Machine"
+	Darwin) NSVM="/Applications/Newspeak Spur 64-bit Virtual Machine.app/Contents/MacOS/Newspeak Virtual Machine"
             HEADLESS="";;
 	*) NSVM=../nsvm/nsvm;;
 	esac
 fi
 
-cp -p Squeak5.0-15113/Squeak5.0-15113-64.image $IMAGE
-cp -p Squeak5.0-15113/Squeak5.0-15113-64.changes $CHANGES
-cp -p Squeak5.0-15113/SqueakV50.sources .
+cp -p Squeak5.1/Squeak5.1-16548-64bit.image $IMAGE
+cp -p Squeak5.1/Squeak5.1-16548-64bit.changes $CHANGES
 
 "$NSVM" $HEADLESS $COG_FLAGS $IMAGE NewspeakBootstrap.st
 

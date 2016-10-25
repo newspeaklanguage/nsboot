@@ -29,16 +29,17 @@ boot
 	self setupPreferences.
 
 	"Sadly there are loading order dependencies here."
-	self loadPackage: 'Newspeak-rmacnak.280.mcz'.
+	self loadPackage: 'Newspeak-rmacnak.281.mcz'.
 	self loadChangeset: '97-Vassilis-icons.cs'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
-	self loadPackage: 'BrazilForMorphic-gbracha.36.mcz'.
+	self loadPackage: 'BrazilForMorphic-rmacnak.38.mcz'.
 	self loadPackage: 'ExternalProcess-rmacnak.32.mcz'.
 	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.42.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
-	self loadPackage: 'NativeSession-rmacnak.106.mcz'.
-	self loadPackage: 'Shout-bwesterg.75.mcz'.
+	self loadPackage: 'NativeSession-rmacnak.107.mcz'.
+	"Broken by Squeak 5.1.
+         self loadPackage: 'Shout-bwesterg.75.mcz'."
 	self loadPackage: 'Win32API-ryan.46.mcz'.
 	self loadPackage: 'XML-Parser-bwesterg.16.mcz'.
 	self loadPackage: 'Hopscotch-tessi.276.mcz'.
@@ -87,7 +88,8 @@ boot
 	[NewspeakGlobalState platform kernel takeOver]
 		ifError: [Transcript show: 'takeOver failed'; cr].
 
-	SystemVersion newVersion: 'nsboot-',Date today yyyymmdd.
+        "Broken in Squeak 5.1.
+	 SystemVersion newVersion: 'nsboot-',Date today yyyymmdd."
 	Utilities setAuthorInitials: ''.
 	WorldState addDeferredUIMessage: 
 		[Smalltalk snapshot: true andQuit: true.
@@ -107,13 +109,11 @@ exit: status
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/29/2015 21:54'!
 initialize
-        
 	WorldState addDeferredUIMessage:
 		[[self boot] on: Error do:
 			[:error |
 			"Stupid Squeak error that does nothing when unhandled."
 			error class = InvalidDirectoryError ifTrue: [error pass].
-			
 			self print: (String streamContents: [:stm | error signalerContext errorReportOn: stm]); cr.
 			self exit: 1]].! !
 
@@ -235,7 +235,7 @@ shrink
 	"This is 'Smalltalk shrink' with broken parts removed."
 	Smalltalk zapMVCprojects.
 	Flaps disableGlobalFlaps: false.
-	Smalltalk unloadReloadablePackages.
+	"Smalltalk unloadReloadablePackages."
 	Smalltalk cleanUp: true.
 	SystemOrganization removeSystemCategory: 'UserObjects'.
 	Smalltalk garbageCollect.! !
