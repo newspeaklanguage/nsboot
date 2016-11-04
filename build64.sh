@@ -41,8 +41,9 @@ if [ -z "$NSVM" ]; then
 	esac
 fi
 
-cp -p Squeak5.1/Squeak5.1-16548-64bit.image $IMAGE
-cp -p Squeak5.1/Squeak5.1-16548-64bit.changes $CHANGES
+cp Squeak5.1/Squeak5.1-16548-64bit.image $IMAGE
+cp Squeak5.1/Squeak5.1-16548-64bit.changes $CHANGES
+cp Squeak5.1/SqueakV50.sources .
 
 "$NSVM" $HEADLESS $COG_FLAGS $IMAGE NewspeakBootstrap.st
 
