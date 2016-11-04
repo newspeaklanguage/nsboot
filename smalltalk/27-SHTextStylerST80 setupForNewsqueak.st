@@ -1,1 +1,0 @@
-SHTextStylerST80 setupForNewsqueak.

@@ -1,4 +1,0 @@
-"
-   Licensed under the Squeak License (the ''License''); you may not use this file except in compliance with the License.  You may obtain a copy of the License at  http://www.squeak.org/SqueakLicense/
-"!
-'From Squeak3.9 of 7 November 2006 [latest update: #7067] on 3 December 2007 at 12:47:57 pm'!!Object methodsFor: 'user interface' stamp: 'vb 4/24/2007 16:21'!trace	Transcript		cr; 		show: 			thisContext sender printString, ': ', self printString! !!ContextPart methodsFor: 'printing' stamp: 'vb 4/24/2007 16:23'!trace	| c i |	c := self.	i := 1.	[c notNil & (i < 101)] whileTrue:		[Transcript cr; space: i.		Transcript nextPutAll: ([c printString] ifError: ['<error>']).		c := c sender.		i := i  + 1].	Transcript endEntry! !

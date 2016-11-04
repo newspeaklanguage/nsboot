@@ -1,1 +1,0 @@
-[Smalltalk	saveAs: 'Squeak4.3.1';	condenseChanges;	snapshot: true andQuit: true] valueSupplyingAnswer: true
