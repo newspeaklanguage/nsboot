@@ -29,7 +29,7 @@ boot
 	self setupPreferences.
 
 	"Sadly there are loading order dependencies here."
-	self loadPackage: 'Newspeak-rmacnak.281.mcz'.
+	self loadPackage: 'Newspeak-rmacnak.282.mcz'.
 	self loadChangeset: '97-Vassilis-icons.cs'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
 	self loadPackage: 'BrazilForMorphic-rmacnak.38.mcz'.
@@ -143,7 +143,7 @@ loadNewspeakModules
         
 	repoDir := (FileDirectory default containingDirectory / 'newspeak').
 	files := repoDir fileNames select: [:ea | ea endsWith: '.ns'].
-	files := files sortBy: [:a :b | a < b].
+	files sort: [:a :b | a < b].
 	files do: [:ea | 
 		self report: 'Compiling module ', ea during:
 			[ | fn src builder mixinMirror klass |
@@ -168,7 +168,7 @@ loadResources
 	| repoDir files |
 	repoDir := (FileDirectory default containingDirectory / 'newspeak').
 	files := repoDir fileNames select: [:ea | ea endsWith: '.png'].
-	files := files sortBy: [:a :b | a < b].
+	files sort: [:a :b | a < b].
 	files do: [:ea | 
 		self report: 'Loading resource ', ea during:
 			[ | name form |
