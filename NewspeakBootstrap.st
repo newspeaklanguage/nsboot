@@ -37,7 +37,7 @@ boot
 	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
 	self loadPackage: 'NsFFI-rmacnak.42.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
-	self loadPackage: 'NativeSession-rmacnak.107.mcz'.
+	self loadPackage: 'NativeSession-gbracha.108.mcz'.
 	"Broken by Squeak 5.1.
          self loadPackage: 'Shout-bwesterg.75.mcz'."
 	self loadPackage: 'Win32API-ryan.46.mcz'.
