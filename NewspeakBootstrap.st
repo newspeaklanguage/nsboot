@@ -1,4 +1,4 @@
-'From Squeak5.1 of 23 August 2016 [latest update: #16548] on 25 February 2017 at 4:56:41 pm'!
+'From Squeak5.1 of 23 August 2016 [latest update: #16548] on 14 June 2017 at 2:54:32 pm'!
 Object subclass: #NewspeakBootstrap
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -10,7 +10,7 @@ Object subclass: #NewspeakBootstrap
 NewspeakBootstrap class
 	instanceVariableNames: ''!
 
-!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'gbracha 2/25/2017 16:39'!
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'gbracha 6/14/2017 14:30'!
 boot
 	Utilities setAuthorInitials: 'bootstrapping'.
 
@@ -35,7 +35,7 @@ boot
 	self loadPackage: 'BrazilForMorphic-rmacnak.38.mcz'.
 	self loadPackage: 'ExternalProcess-rmacnak.32.mcz'.
 	self loadPackage: 'OSProcess-rmacnak.13.mcz'.
-	self loadPackage: 'NsFFI-rmacnak.42.mcz'.
+	self loadPackage: 'NsFFI-bwesterg.47.mcz'.
 	self loadPackage: 'NSFiles-ryan.30.mcz'.
 	self loadPackage: 'NativeSession-gbracha.108.mcz'.
 	"Broken by Squeak 5.1.
