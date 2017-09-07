@@ -29,7 +29,8 @@ boot
 	self setupPreferences.
 
 	"Sadly there are loading order dependencies here."
-	self loadPackage: 'Newspeak-rmacnak.285.mcz'.
+	self loadPackage: 'Newspeak-skrynski.286.mcz'.
+	"self loadPackage: 'Newspeak-rmacnak.285'."
 	self loadChangeset: '97-Vassilis-icons.cs'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
 	self loadPackage: 'BrazilForMorphic-rmacnak.38.mcz'.
