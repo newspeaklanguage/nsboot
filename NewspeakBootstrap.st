@@ -1,4 +1,4 @@
-'From Squeak5.1 of 23 August 2016 [latest update: #16548] on 27 April 2019 at 2:28:26 pm'!
+'From Squeak5.1 of 23 August 2016 [latest update: #16548] on 27 April 2019 at 3:17:18 pm'!
 Object subclass: #NewspeakBootstrap
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -10,7 +10,7 @@ Object subclass: #NewspeakBootstrap
 NewspeakBootstrap class
 	instanceVariableNames: ''!
 
-!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/27/2019 14:21'!
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/27/2019 15:17'!
 boot
 	Utilities setAuthorInitials: 'bootstrapping'.
 
@@ -29,7 +29,7 @@ boot
 	self setupPreferences.
 
 	"Sadly there are loading order dependencies here."
-	self loadPackage: 'Newspeak-rmacnak.287.mcz'.
+	self loadPackage: 'Newspeak-rmacnak.288.mcz'.
 	self loadChangeset: '97-Vassilis-icons.cs'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
 	self loadPackage: 'BrazilForMorphic-rmacnak.38.mcz'.
@@ -163,7 +163,7 @@ loadPackage: filename
 			directory: (FileDirectory default / 'smalltalk').	
 		(repository loadVersionFromFileNamed: filename) load].! !
 
-!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/27/2019 14:23'!
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/27/2019 15:13'!
 loadResources
 	| repoDir files |
 	repoDir := (FileDirectory default containingDirectory / 'newspeak').
@@ -192,8 +192,18 @@ loadResources
 		self report: 'Loading resource ', ea during:
 			[ | name content script |
 			content := (FileStream oldFileNamed: (repoDir fullNameFor: ea)) contents.
-			script := JSScript new content: content.
+			script := Script new type: 'js'; content: content.
 			name := (ea allButLast: 3) asSymbol.
+			NewspeakGlobalState namespace at: name put: script]].
+
+	files := repoDir fileNames select: [:ea | ea endsWith: '.css'].
+	files sort: [:a :b | a < b].
+	files do: [:ea | 
+		self report: 'Loading resource ', ea during:
+			[ | name content script |
+			content := (FileStream oldFileNamed: (repoDir fullNameFor: ea)) contents.
+			script := Script new type: 'css'; content: content.
+			name := (ea allButLast: 4) asSymbol.
 			NewspeakGlobalState namespace at: name put: script]].
 
 	NewspeakGlobalState resetEverything.! !
