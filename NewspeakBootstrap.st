@@ -1,4 +1,4 @@
-'From Squeak5.1 of 23 August 2016 [latest update: #16548] on 14 June 2017 at 2:54:32 pm'!
+'From Squeak5.1 of 23 August 2016 [latest update: #16548] on 27 April 2019 at 2:28:26 pm'!
 Object subclass: #NewspeakBootstrap
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -10,7 +10,7 @@ Object subclass: #NewspeakBootstrap
 NewspeakBootstrap class
 	instanceVariableNames: ''!
 
-!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'gbracha 6/14/2017 14:30'!
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/27/2019 14:21'!
 boot
 	Utilities setAuthorInitials: 'bootstrapping'.
 
@@ -29,8 +29,7 @@ boot
 	self setupPreferences.
 
 	"Sadly there are loading order dependencies here."
-	self loadPackage: 'Newspeak-skrynski.286.mcz'.
-	"self loadPackage: 'Newspeak-rmacnak.285'."
+	self loadPackage: 'Newspeak-rmacnak.287.mcz'.
 	self loadChangeset: '97-Vassilis-icons.cs'.
 	self loadPackage: 'Brazil-ryan.323.mcz'.
 	self loadPackage: 'BrazilForMorphic-rmacnak.38.mcz'.
@@ -164,10 +163,11 @@ loadPackage: filename
 			directory: (FileDirectory default / 'smalltalk').	
 		(repository loadVersionFromFileNamed: filename) load].! !
 
-!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 3/20/2014 20:21'!
+!NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'rmacnak 4/27/2019 14:23'!
 loadResources
 	| repoDir files |
 	repoDir := (FileDirectory default containingDirectory / 'newspeak').
+
 	files := repoDir fileNames select: [:ea | ea endsWith: '.png'].
 	files sort: [:a :b | a < b].
 	files do: [:ea | 
@@ -176,7 +176,26 @@ loadResources
 			form := PNGReadWriter formFromFileNamed: (repoDir fullNameFor: ea).
 			name := (ea allButLast: 4) asSymbol.
 			NewspeakGlobalState namespace at: name put: form]].
-	
+
+	files := repoDir fileNames select: [:ea | ea endsWith: '.txt'].
+	files sort: [:a :b | a < b].
+	files do: [:ea | 
+		self report: 'Loading resource ', ea during:
+			[ | name string |
+			string := (FileStream oldFileNamed: (repoDir fullNameFor: ea)) contents.
+			name := (ea allButLast: 4) asSymbol.
+			NewspeakGlobalState namespace at: name put: string]].
+
+	files := repoDir fileNames select: [:ea | ea endsWith: '.js'].
+	files sort: [:a :b | a < b].
+	files do: [:ea | 
+		self report: 'Loading resource ', ea during:
+			[ | name content script |
+			content := (FileStream oldFileNamed: (repoDir fullNameFor: ea)) contents.
+			script := JSScript new content: content.
+			name := (ea allButLast: 3) asSymbol.
+			NewspeakGlobalState namespace at: name put: script]].
+
 	NewspeakGlobalState resetEverything.! !
 
 !NewspeakBootstrap class methodsFor: 'as yet unclassified' stamp: 'ryan 8/7/2012 21:58'!
