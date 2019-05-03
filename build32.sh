@@ -52,8 +52,10 @@ if [ ! -z "$TEST" ]; then
 fi
 
 if [ -z "$NOZIP" ]; then
-	hg --cwd ../newspeak tip > newspeaktip
-	hg --cwd ../nsboot tip > nsboottip
+        pushd ../newspeak
+        git log -1 > ../nsboot/newspeaktip
+        popd
+        git log -1 > nsboottip
 
 	zip $ZIP $IMAGE $CHANGES newspeaktip nsboottip
 	mkdir -p $IMAGEPATH || true
